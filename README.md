@@ -156,7 +156,9 @@ You should move this file to your KiCad Themes folder.
 
 7. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
 
-8.  Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
+8. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
+
+9. Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
 
 ## USAGE
 
