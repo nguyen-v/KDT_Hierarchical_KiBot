@@ -1,0 +1,180 @@
+# KiBot preflight for setting Text Variables
+# https://kibot.readthedocs.io/en/latest/configuration/preflights/set_text_variables.html
+
+kibot:
+  version: 1
+
+preflight:
+  update_xml: true
+  set_text_variables:
+
+    # Git related information
+    - variable: 'REVISION'
+      # command: 'git describe --tags --abbrev=0 || echo ""'
+      text: '@REVISION@'
+    - variable: 'RELEASE_DATE'
+      command: 'git log -1 --format="%ad" --date="format:%d-%b-%Y"'
+    - variable: 'RELEASE_DATE_NUM'
+      command: 'git log -1 --format="%ad" --date=short'
+    - variable: 'GIT_HASH_SCH'
+      command: 'git log -1 --format="%h" $KIBOT_SCH_NAME'
+    - variable: 'GIT_HASH_PCB'
+      command: 'git log -1 --format="%h" $KIBOT_PCB_NAME'
+    - variable: 'GIT_URL'
+      text: '@GIT_URL@'
+
+    # Metadata
+    - variable: 'PROJECT_NAME'
+      text: '@PROJECT_NAME@'
+    - variable: 'BOARD_NAME'
+      text: '@BOARD_NAME@'
+    - variable: 'COMPANY'
+      text: '@COMPANY@'
+    - variable: 'DESIGNER'
+      text: '@DESIGNER@'
+    - variable: 'VARIANT'
+      text: '%V'
+
+    # Changelog
+    - variable: '@RELEASE_TITLE_VAR@1.0.0'
+      command: '@GET_TITLE_CMD@ 1.0.0'
+    - variable: '@RELEASE_BODY_VAR@1.0.0'
+      command: '@GET_BODY_CMD@ 1.0.0'
+
+    - variable: '@RELEASE_TITLE_VAR@1.0.1'
+      command: '@GET_TITLE_CMD@ 1.0.1'
+    - variable: '@RELEASE_BODY_VAR@1.0.1'
+      command: '@GET_BODY_CMD@ 1.0.1'
+
+    - variable: '@RELEASE_TITLE_VAR@1.0.2'
+      command: '@GET_TITLE_CMD@ 1.0.2'
+    - variable: '@RELEASE_BODY_VAR@1.0.2'
+      command: '@GET_BODY_CMD@ 1.0.2'
+
+    - variable: '@RELEASE_TITLE_VAR@1.1.0'
+      command: '@GET_TITLE_CMD@ 1.1.0'
+    - variable: '@RELEASE_BODY_VAR@1.1.0'
+      command: '@GET_BODY_CMD@ 1.1.0'
+
+    - variable: '@RELEASE_TITLE_VAR@1.1.1'
+      command: '@GET_TITLE_CMD@ 1.1.1'
+    - variable: '@RELEASE_BODY_VAR@1.1.1'
+      command: '@GET_BODY_CMD@ 1.1.1'
+
+    - variable: '@RELEASE_TITLE_VAR@UNRELEASED'
+      command: '@GET_TITLE_CMD@ Unreleased'
+    - variable: '@RELEASE_BODY_VAR@UNRELEASED'
+      command: '@GET_BODY_CMD@ Unreleased'
+
+    # Fabrication notes
+    - variable: 'FABRICATION_NOTES'
+      expand_in_command: true
+      command: '[ -f "@FABRICATION_DIR@/%f-fabrication_notes%v.txt" ] && cat "@FABRICATION_DIR@/%f-fabrication_notes%v.txt" || echo ""'
+
+
+    # Fabrication notes
+    - variable: 'ASSEMBLY_NOTES'
+      expand_in_command: true
+      command: '[ -f "@ASSEMBLY_DIR@/%f-assembly_notes%v.txt" ] && cat "@ASSEMBLY_DIR@/%f-assembly_notes%v.txt" || echo ""'
+
+    # Page titles for automatic ToC
+    - variable: '@SHEET_NAME_VAR@1'
+      text: 'Cover Page'
+    - variable: '@SHEET_NAME_VAR@2'
+      command: '@GET_SHEET_CMD@ 2'
+    - variable: '@SHEET_NAME_VAR@3'
+      command: '@GET_SHEET_CMD@ 3'
+    - variable: '@SHEET_NAME_VAR@4'
+      command: '@GET_SHEET_CMD@ 4'
+    - variable: '@SHEET_NAME_VAR@5'
+      command: '@GET_SHEET_CMD@ 5'
+    - variable: '@SHEET_NAME_VAR@6'
+      command: '@GET_SHEET_CMD@ 6'
+    - variable: '@SHEET_NAME_VAR@7'
+      command: '@GET_SHEET_CMD@ 7'
+    - variable: '@SHEET_NAME_VAR@8'
+      command: '@GET_SHEET_CMD@ 8'
+    - variable: '@SHEET_NAME_VAR@9'
+      command: '@GET_SHEET_CMD@ 9'
+    - variable: '@SHEET_NAME_VAR@10'
+      command: '@GET_SHEET_CMD@ 10'
+    - variable: '@SHEET_NAME_VAR@11'
+      command: '@GET_SHEET_CMD@ 11'
+    - variable: '@SHEET_NAME_VAR@12'
+      command: '@GET_SHEET_CMD@ 12'
+    - variable: '@SHEET_NAME_VAR@13'
+      command: '@GET_SHEET_CMD@ 13'
+    - variable: '@SHEET_NAME_VAR@14'
+      command: '@GET_SHEET_CMD@ 14'
+    - variable: '@SHEET_NAME_VAR@15'
+      command: '@GET_SHEET_CMD@ 15'
+    - variable: '@SHEET_NAME_VAR@16'
+      command: '@GET_SHEET_CMD@ 16'
+    - variable: '@SHEET_NAME_VAR@17'
+      command: '@GET_SHEET_CMD@ 17'
+    - variable: '@SHEET_NAME_VAR@18'
+      command: '@GET_SHEET_CMD@ 18'
+    - variable: '@SHEET_NAME_VAR@19'
+      command: '@GET_SHEET_CMD@ 19'
+    - variable: '@SHEET_NAME_VAR@20'
+      command: '@GET_SHEET_CMD@ 20'
+    - variable: '@SHEET_NAME_VAR@21'
+      command: '@GET_SHEET_CMD@ 21'
+    - variable: '@SHEET_NAME_VAR@22'
+      command: '@GET_SHEET_CMD@ 22'
+    - variable: '@SHEET_NAME_VAR@23'
+      command: '@GET_SHEET_CMD@ 23'
+    - variable: '@SHEET_NAME_VAR@24'
+      command: '@GET_SHEET_CMD@ 24'
+    - variable: '@SHEET_NAME_VAR@25'
+      command: '@GET_SHEET_CMD@ 25'
+    - variable: '@SHEET_NAME_VAR@26'
+      command: '@GET_SHEET_CMD@ 26'
+    - variable: '@SHEET_NAME_VAR@27'
+      command: '@GET_SHEET_CMD@ 27'
+    - variable: '@SHEET_NAME_VAR@28'
+      command: '@GET_SHEET_CMD@ 28'
+    - variable: '@SHEET_NAME_VAR@29'
+      command: '@GET_SHEET_CMD@ 29'
+    - variable: '@SHEET_NAME_VAR@30'
+      command: '@GET_SHEET_CMD@ 30'
+    - variable: '@SHEET_NAME_VAR@31'
+      command: '@GET_SHEET_CMD@ 31'
+    - variable: '@SHEET_NAME_VAR@32'
+      command: '@GET_SHEET_CMD@ 32'
+    - variable: '@SHEET_NAME_VAR@33'
+      command: '@GET_SHEET_CMD@ 33'
+    - variable: '@SHEET_NAME_VAR@34'
+      command: '@GET_SHEET_CMD@ 34'
+    - variable: '@SHEET_NAME_VAR@35'
+      command: '@GET_SHEET_CMD@ 35'
+    - variable: '@SHEET_NAME_VAR@36'
+      command: '@GET_SHEET_CMD@ 36'
+    - variable: '@SHEET_NAME_VAR@37'
+      command: '@GET_SHEET_CMD@ 37'
+    - variable: '@SHEET_NAME_VAR@38'
+      command: '@GET_SHEET_CMD@ 38'
+    - variable: '@SHEET_NAME_VAR@39'
+      command: '@GET_SHEET_CMD@ 39'
+    - variable: '@SHEET_NAME_VAR@40'
+      command: '@GET_SHEET_CMD@ 40'
+
+...
+definitions:
+  PROJECT_NAME: ""
+  BOARD_NAME: ""
+  COMPANY: ""
+  DESIGNER: ""
+  REVISION: ""
+  RELEASE_DATE: ""
+  RELEASE_DATE_NUM: ""
+  GIT_URL: ""
+  SHEET_NAME_VAR: SHEET_NAME_
+  RELEASE_TITLE_VAR: RELEASE_TITLE_
+  RELEASE_BODY_VAR: RELEASE_BODY_
+  SCRIPTS_DIR: kibot_resources/scripts
+  GET_SHEET_CMD: python3 @SCRIPTS_DIR@/get_sheet_title.py -f "${KIBOT_SCH_NAME%.kicad_sch}.xml" --dots-number 38 -p
+  GET_TITLE_CMD: python3 @SCRIPTS_DIR@/get_changelog.py -f CHANGELOG.md --title-only --version
+  GET_BODY_CMD: python3 @SCRIPTS_DIR@/get_changelog.py -f CHANGELOG.md --extra-spaces --separators 35 --version
+  FABRICATION_DIR: Manufacturing/Fabrication
+  ASSEMBLY_DIR: Manufacturing/Assembly

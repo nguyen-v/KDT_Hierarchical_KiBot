@@ -1,0 +1,10 @@
+*-backups
+\#auto_saved_files#
+*.lck
+*.bak
+*.ini
+*.kicad_sch-bak
+*.kicad_pro-bak
+*.kicad_pcb-bak
+fp-info-cache
+*Zone.Identifier

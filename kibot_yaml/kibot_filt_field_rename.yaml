@@ -1,0 +1,21 @@
+# KiBot Filter for renaming Manufacturer Part Number field
+
+kibot:
+  version: 1
+
+filters:
+  - name: '@NAME@'
+    comment: '@COMMENT@'
+    type: field_rename
+    rename:
+      - field: '@MPN_FIELD@'
+        name: manf#
+      - field: '@MAN_FIELD@'
+        name: manf
+
+...
+definitions:
+  COMMENT: Rename fields
+  NAME: field_rename
+  MPN_FIELD: 'Manufacturer Part Number'
+  MAN_FIELD: 'Manufacturer'

@@ -1,0 +1,177 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+' # Match semantic versioning tags
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - '*.md'
+
+env:
+  kibot_config: kibot_yaml/kibot_main.yaml
+
+  # Used variant. We assume:
+  # DRAFT: only schematic in progress, will only generate schematic PDF, netlist and BoM
+  # PRELIMINARY: will generate both schematic and PCB documents, but no ERC/DRC
+  # CHECKED: will generate both schematic and PCB documents, with ERC/DRC
+  # RELEASED: similar to CHECKED, automatically selected when pushing a tag to master
+
+  kibot_variant: CHECKED  
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    needs: generate_outputs
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Pull latest changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          git fetch
+          git pull origin main
+          
+      - name: Extract release notes
+        uses: ffurrer2/extract-release-notes@v2
+        id: extract-release-notes
+        with:
+          prerelease: true
+
+      - name: Update changelog
+        uses: thomaseizinger/keep-a-changelog-new-release@v2
+        with:
+          tag: ${{ github.ref_name }}
+
+      - name: Release
+        uses: docker://antonyurchenko/git-release:v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: |
+            Schematic/*.pdf
+            Manufacturing/Assembly/*
+            Manufacturing/Fabrication/*.pdf
+            Manufacturing/Fabrication/*.zip
+            Manufacturing/Fabrication/*.txt
+            3D/*.step
+            Testing/Testpoints/*.csv
+
+      - name: Commit updated CHANGELOG
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: master
+          commit_message: Update CHANGELOG
+          file_pattern: CHANGELOG.md
+          push_options: '--force'
+
+  generate_outputs:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'Merge pull request') || github.ref_type == 'tag'"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache 3D models data
+        id: models-cache
+        uses: set-soft/cache@main
+        with:
+          path: ~/cache_3d
+          key: cache_3d
+
+      - name: Determine VERSION Argument and Override Variant if Tag
+        id: determine-version-and-args
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 || echo "")
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            version_arg="-E REVISION='${last_tag}'"
+            echo "Overriding kibot_variant to 'RELEASED' for tag"
+            echo "kibot_variant=RELEASED" >> $GITHUB_ENV
+          else
+            version_arg="-E REVISION='${last_tag}+ (Unreleased)'"
+            echo "kibot_variant=${{ env.kibot_variant }}" >> $GITHUB_ENV
+          fi
+
+          # Determine additional_args based on the variant
+          case "$kibot_variant" in
+            "DRAFT")
+              additional_args="--skip-pre draw_fancy_stackup,erc,drc ${version_arg} draft_group"
+              ;;
+            "PRELIMINARY")
+              additional_args="--skip-pre erc,drc ${version_arg} all_group"
+              ;;
+            "CHECKED"|"RELEASED")
+              additional_args="${version_arg} all_group"
+              ;;
+            *)
+              echo "Unknown variant: $kibot_variant"
+              exit 1
+              ;;
+          esac
+
+          echo "version_arg=${version_arg}" >> $GITHUB_ENV
+          echo "additional_args=${additional_args}" >> $GITHUB_ENV
+
+
+      - name: Generate notes (Skipped for DRAFT variant)
+        if: ${{ env.kibot_variant != 'DRAFT' }}
+        uses: INTI-CMNB/KiBot@v2_dk8
+        with:
+          targets: notes
+          skip: all
+          variant: ${{ env.kibot_variant }}
+          config: ${{ env.kibot_config }}
+
+      - name: Generate outputs
+        uses: INTI-CMNB/KiBot@v2_dk8
+        with:
+          additional_args: ${{ env.additional_args }}
+          variant: ${{ env.kibot_variant }}
+          config: ${{ env.kibot_config }}
+          cache3D: YES
+
+      - name: Pull latest changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            echo "Triggered by a tag, committing changes in detached HEAD state"
+            git add -A
+            git commit -m "Update Outputs (release)"
+
+            DETACHED_COMMIT=$(git rev-parse HEAD)
+            echo "Checking out the main branch"
+            git fetch origin main
+            git checkout main
+
+            echo "Merging detached HEAD commit into main"
+            git merge --no-ff $DETACHED_COMMIT -m "Merge outputs from tag-triggered workflow" -X theirs
+            echo "Pushing to main branch"
+            git push origin main
+          else
+            echo "Triggered by a branch, using the current branch"
+            git pull origin ${{ github.ref_name }} --tags --force
+          fi
+
+      - name: Discard changes to .kicad_pcb files
+        run: git checkout HEAD -- *.kicad_pcb
+
+      - name: Update Outputs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: ${{ github.ref_name }}
+          commit_message: Update Outputs

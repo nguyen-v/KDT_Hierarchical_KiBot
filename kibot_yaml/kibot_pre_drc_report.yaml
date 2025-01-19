@@ -1,0 +1,20 @@
+# KiBot preflight for generating DRC reports
+# https://kibot.readthedocs.io/en/latest/configuration/preflights/drc.html
+
+kibot:
+  version: 1
+
+preflight:
+  check_zone_fills: @CHECK_ZONE_FILLS@
+  drc:
+    category: '@DIR@'
+    dir: '@DIR@'
+    dont_stop: true
+    format: 'HTML, RPT'
+    output: 'report_%f-%i%I%v.%x'
+
+...
+definitions:
+  CHECK_ZONE_FILLS: true
+  CATEGORY: Schematic
+  DIR: Reports

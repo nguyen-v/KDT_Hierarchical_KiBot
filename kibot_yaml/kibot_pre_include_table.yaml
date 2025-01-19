@@ -1,0 +1,59 @@
+# KiBot preflight for Include Table feature
+# https://kibot.readthedocs.io/en/latest/configuration/preflights/include_table.html
+
+kibot:
+  version: 1
+
+preflight:
+  include_table:
+    outputs:
+      - name: '@NAME_TP_TOP@'
+        text_alignment: 'left'
+        invert_columns_order: false
+        border_width: 0.2
+        header_rule_width: 0.2
+        horizontal_rule_width: 0
+        vertical_rule_width: 0
+        top_rule_width: 0
+        bottom_rule_width: 0
+        column_spacing: 1
+        # force_font_width: 1.27 # mm
+      - name: '@NAME_TP_BOTTOM@'
+        text_alignment: 'right'
+        invert_columns_order: true
+        border_width: 0.2
+        header_rule_width: 0.2
+        horizontal_rule_width: 0
+        vertical_rule_width: 0
+        top_rule_width: 0
+        bottom_rule_width: 0
+        column_spacing: 1
+        # force_font_width: 1.27 # mm
+      - name: '@NAME_COMP_COUNT@'
+        text_alignment: 'left'
+        invert_columns_order: false
+        border_width: 0.2
+        header_rule_width: 0.2
+        horizontal_rule_width: 0
+        vertical_rule_width: 0
+        top_rule_width: 0
+        bottom_rule_width: 0
+        row_spacing: 3
+        column_spacing: 1
+      - name: '@NAME_IMPEDANCE_TABLE@'
+        text_alignment: 'left'
+        invert_columns_order: false
+        border_width: 0.2
+        header_rule_width: 0.2
+        vertical_rule_width: 0
+        top_rule_width: 0
+        bottom_rule_width: 0
+        row_spacing: 3
+        column_spacing: 1
+
+...
+definitions:
+  NAME_TP_TOP: csv_testpoints_top
+  NAME_TP_BOTTOM: csv_testpoints_bottom
+  NAME_COMP_COUNT: csv_comp_count
+  NAME_IMPEDANCE_TABLE: csv_impedance_table

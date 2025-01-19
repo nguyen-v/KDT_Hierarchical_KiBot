@@ -1,0 +1,229 @@
+# KiBot output for generating Fabrication Document in PDF format
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/pcb_print.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: pcb_print
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    colored_pads: false
+    colored_vias: false
+    color_theme: '@COLOR_THEME@'
+    output: '%f-fabrication%I%v.%x'
+    format: 'PDF'
+    title: '@DOC_TITLE@ Document'
+    realistic_solder_mask: false
+    dpi: 1200
+    dnf_filter: _kibom_dnf_Config
+    frame_plot_mechanism: 'internal' 
+    sheet_reference_layout: '@SHEET_WKS@'
+    drill:
+      unify_pth_and_npth: '@PTH_NPTH@'
+      group_slots_and_round_holes: @GROUP_ROUND_SLOTS@
+    include_table:
+      outputs:
+        - name: '@NAME_TP_TOP@'
+          text_alignment: 'left'
+          invert_columns_order: false
+          border_width: 0.4
+          header_rule_width: 0.2
+          horizontal_rule_width: 0
+          vertical_rule_width: 0.2
+          top_rule_width: 0.2
+          bottom_rule_width: 0.2
+          column_spacing: 2
+          force_font_width: 1.27 # mm
+        - name: '@NAME_TP_BOTTOM@'
+          text_alignment: 'right'
+          invert_columns_order: true
+          border_width: 0.4
+          header_rule_width: 0.2
+          horizontal_rule_width: 0
+          vertical_rule_width: 0.2
+          top_rule_width: 0.2
+          bottom_rule_width: 0.2
+          column_spacing: 2
+          force_font_width: 1.27 # mm
+        - name: '@NAME_IMPEDANCE_TABLE@'
+          text_alignment: 'left'
+          invert_columns_order: false
+          border_width: 0.4
+          header_rule_width: 0.2
+          horizontal_rule_width: 0
+          vertical_rule_width: 0.2
+          top_rule_width: 0.2
+          bottom_rule_width: 0.2
+          row_spacing: 3
+          column_spacing: 2
+          row_spacing: 3
+        - name: '@NAME_DRILL_TABLE@'
+          text_alignment: 'left'
+          invert_columns_order: false
+          border_width: 0.4
+          header_rule_width: 0.2
+          horizontal_rule_width: 0
+          vertical_rule_width: 0.2
+          top_rule_width: 0.2
+          bottom_rule_width: 0.2
+          row_spacing: 3
+          column_spacing: 2
+          force_font_width: 1 # mm
+
+    pages:
+      - scaling: @SCALING@
+        title: '@DOC_TITLE@'
+        sheet: 'Top Fabrication (Scale @SCALING@:1)'
+        layer_var: 'Top Fabrication (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: F.Cu
+            color: '#F2F2F2'
+          - layer: F.Mask
+            color: '#E2E2E2'
+          - layer: F.Paste
+            color: '#E2E2E2'
+          - layer: F.Silkscreen
+            color: '#DBDBDB'
+          - layer: F.Fab
+            plot_footprint_refs: false
+            plot_footprint_values: false
+            color: '#818181'
+          - layer: F.Dimensions
+            color: '#000000'
+
+      - scaling: @SCALING@
+        mirror: true
+        mirror_pcb_text: false
+        title: '@DOC_TITLE@'
+        sheet: 'Bottom Fabrication (Scale @SCALING@:1)'
+        layer_var: 'Bottom Fabrication (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: B.Cu
+            color: '#F2F2F2'
+          - layer: B.Mask
+            color: '#E2E2E2'
+          - layer: B.Paste
+            color: '#E2E2E2'
+          - layer: B.Silkscreen
+            color: '#DBDBDB'
+          - layer: B.Fab
+            plot_footprint_refs: false
+            plot_footprint_values: false
+            color: '#818181'
+          - layer: B.Dimensions
+            color: '#000000'
+
+      - scaling: @SCALING@
+        title: '@DOC_TITLE@'
+        sheet: 'Drill Drawing (%lp)'
+        layer_var: 'Drill Drawing %lp (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        repeat_for_layer: '@LAYER_DRILL_MAP@'
+        repeat_layers: 'drill_pairs'
+        layers:
+          - layer: '@LAYER_DRILL_MAP@'
+            color: '#000000'
+          - layer: 'Edge.Cuts'
+            color: '#000000'
+
+      - scaling: @SCALING@
+        title: '@DOC_TITLE@'
+        sheet: 'Top Test Points (Scale @SCALING@:1)'
+        layer_var: 'Top Test Points (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: F.Cu
+            color: '#E5E5E5'
+          - layer: F.Mask
+            color: '#CECECE'
+          - layer: F.Paste
+            color: '#CECECE'
+          - layer: F.Silkscreen
+            color: '#C7C7C7'
+          - layer: F.Fab
+            exclude_filter: '@FAB_EXCLUDE_FILTER@'
+            plot_footprint_values: false
+            sketch_pads_on_fab_layers: false
+            color: '#E10000'
+          - layer: '@LAYER_TP_LIST_TOP@'
+            color: '#000000'
+
+      - scaling: @SCALING@
+        mirror : true
+        mirror_pcb_text: true
+        title: '@DOC_TITLE@'
+        sheet: 'Bottom Test Points (Scale @SCALING@:1)'
+        layer_var: 'Bottom Test Points (Scale @SCALING@:1)'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: B.Cu
+            color: '#E5E5E5'
+          - layer: B.Mask
+            color: '#CECECE'
+          - layer: B.Paste
+            color: '#CECECE'
+          - layer: B.Silkscreen
+            color: '#C7C7C7'
+          - layer: B.Fab
+            exclude_filter: '@FAB_EXCLUDE_FILTER@'
+            plot_footprint_values: false
+            sketch_pads_on_fab_layers: false
+            color: '#0B00CC'
+          - layer: '@LAYER_TP_LIST_BOTTOM@'
+            color: '#000000'
+
+      - scaling: @SCALING@
+        sheet: '%ln (Scale @SCALING@:1)'
+        layer_var: '%ln (Scale @SCALING@:1)'
+        title: '@DOC_TITLE@'
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        repeat_for_layer: 'F.Cu'
+        repeat_layers: 'copper'
+        layers:
+          - layer: 'F.Cu'
+
+...
+definitions:
+  NAME: pdf_fabrication
+  COMMENT: Fabrication document in PDF format
+  DIR: Manufacturing/Fabrication
+  DOC_TITLE: Fabrication
+  COLOR_THEME: Altium_Theme
+  SHEET_WKS: ${KIPRJMOD}/Templates/KDT_Template_PCB_GIT_A4.kicad_wks
+  SCALING: 1.0
+  FAB_EXCLUDE_FILTER: only_testpoints
+  LAYER_DRILL_MAP: DrillMap
+  LAYER_TP_LIST_TOP: F.TestPointList
+  LAYER_TP_LIST_BOTTOM: B.TestPointList
+  PTH_NPTH: 'yes'
+  GROUP_ROUND_SLOTS: true 
+  NAME_TP_TOP: csv_testpoints_top
+  NAME_TP_BOTTOM: csv_testpoints_bottom
+  NAME_IMPEDANCE_TABLE: csv_impedance_table
+  NAME_DRILL_TABLE: csv_drill_table

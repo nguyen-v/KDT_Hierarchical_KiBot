@@ -1,0 +1,332 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "07236397-3ba4-47af-9809-3faac3a2aa49")
+	(paper "A3")
+	(title_block
+		(title "Project Architecture")
+		(date "2025-01-12")
+		(rev "${REVISION}")
+		(company "${COMPANY}")
+	)
+	(lib_symbols)
+	(polyline
+		(pts
+			(xy 185.42 87.63) (xy 185.42 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b678fb1-fee7-4461-95f7-7f383f478fdc")
+	)
+	(polyline
+		(pts
+			(xy 233.68 125.73) (xy 233.68 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c7de816-3d34-497f-b0c8-22f80559d2d8")
+	)
+	(polyline
+		(pts
+			(xy 185.42 85.09) (xy 185.42 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "903e49b2-1b5d-4317-a33b-adfda1594a88")
+	)
+	(polyline
+		(pts
+			(xy 233.68 114.3) (xy 233.68 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9543d363-0f36-4c41-97bc-b97723f48818")
+	)
+	(arc
+		(start 185.42 85.09)
+		(mid 185.0451 85.9851)
+		(end 184.15 86.36)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 13e3bc56-4a98-40ef-8c39-3b21620a792f)
+	)
+	(arc
+		(start 234.97 124.44)
+		(mid 234.0749 124.0651)
+		(end 233.7 123.17)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 19c30b2f-1391-4be0-8a5f-17a3226c0876)
+	)
+	(arc
+		(start 233.7 125.71)
+		(mid 234.0749 124.8149)
+		(end 234.97 124.44)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 5b059745-d833-4f9d-9745-ec7a90904541)
+	)
+	(arc
+		(start 233.7 134.6)
+		(mid 232.9561 136.3961)
+		(end 231.16 137.14)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 62bb3cd5-23b6-4c8e-a8f2-a293aca5d83b)
+	)
+	(arc
+		(start 184.15 86.36)
+		(mid 185.0451 86.7349)
+		(end 185.42 87.63)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 787eda22-1bf9-4d1b-96b2-11995bb2af0f)
+	)
+	(arc
+		(start 187.96 101.6)
+		(mid 186.1698 100.8502)
+		(end 185.42 99.06)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 7c454724-851d-42c5-8823-df570c1fc5eb)
+	)
+	(arc
+		(start 231.16 111.74)
+		(mid 232.9502 112.4898)
+		(end 233.7 114.28)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 94ad6bc3-4505-4c4a-89fc-83d0c51dd562)
+	)
+	(arc
+		(start 185.42 73.66)
+		(mid 186.1639 71.8639)
+		(end 187.96 71.12)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid fda911f3-adb3-4abb-981f-a877a93c831b)
+	)
+	(text_box "Description"
+		(exclude_from_sim no)
+		(at 166.37 83.82 0)
+		(size 17.145 5.08)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.381)
+				(bold yes)
+				(color 0 0 0 1)
+			)
+			(justify right top)
+		)
+		(uuid "971f0c48-6726-412d-badf-cee82cbffedd")
+	)
+	(text_box "Description"
+		(exclude_from_sim no)
+		(at 234.95 121.92 0)
+		(size 26.015 5.1)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.381)
+				(bold yes)
+				(color 0 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "97bb5e92-ab26-4907-9b80-08d49465fc86")
+	)
+	(text_box "[${#}] ${TITLE}"
+		(exclude_from_sim no)
+		(at 144.78 21.59 0)
+		(size 130.81 12.7)
+		(stroke
+			(width -0.0001)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(face "Times New Roman")
+				(size 8 8)
+				(thickness 1.2)
+				(bold yes)
+				(color 162 22 34 1)
+			)
+		)
+		(uuid "f4789478-c68e-4cee-9edd-5d11b744f94d")
+	)
+	(text "Page 5"
+		(exclude_from_sim no)
+		(at 226.06 133.35 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(bold yes)
+				(color 100 70 50 1)
+			)
+			(justify right bottom)
+			(href "#5")
+		)
+		(uuid "b60ecde0-2a85-4071-a728-47148cd80779")
+	)
+	(text "Page 4"
+		(exclude_from_sim no)
+		(at 226.06 95.25 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(bold yes)
+				(color 20 60 40 1)
+			)
+			(justify right bottom)
+			(href "#4")
+		)
+		(uuid "f04f874a-d252-4474-87f2-c34bbb094a4c")
+	)
+	(sheet
+		(at 190.5 114.3)
+		(size 36.83 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 200 0 0.5020)
+		)
+		(uuid "e744f3ce-03a6-44a6-8792-1447ef232b9a")
+		(property "Sheetname" "Section B - Title B"
+			(at 190.5 113.2709 0)
+			(effects
+				(font
+					(size 1.905 1.905)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Section B - TItle B.kicad_sch"
+			(at 190.5 135.2046 0)
+			(effects
+				(font
+					(face "Arial")
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "KDT_Hierarchical_KiBot"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 190.5 76.2)
+		(size 36.83 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 128 255 128 0.5000)
+		)
+		(uuid "f06537ee-772d-44d3-8c50-e0ba41038c9c")
+		(property "Sheetname" "Section A - Title A"
+			(at 190.5 75.1709 0)
+			(effects
+				(font
+					(size 1.905 1.905)
+					(bold yes)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Section A - Title A.kicad_sch"
+			(at 190.5 97.1046 0)
+			(effects
+				(font
+					(face "Arial")
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "KDT_Hierarchical_KiBot"
+				(path "/f9e05184-c88b-4a88-ae9c-ab2bdb32be7c/c5103ceb-5325-4a84-a025-9638a412984e"
+					(page "4")
+				)
+			)
+		)
+	)
+)

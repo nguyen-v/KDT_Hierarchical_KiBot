@@ -1,0 +1,105 @@
+# KiBot output for generating PCB 3D model PCB3D Blender format
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/PCB2Blender_ToolsOptions.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: blender_export
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    light:
+      - name: "light1"
+        energy: 2
+        pos_x: -size*3.33
+        pos_y: size*3.33
+        pos_z: size*5
+        type: "AREA"
+
+      - name: "light2"
+        energy: 1
+        pos_x: 0
+        pos_y: size*3.33
+        pos_z: size*7
+        type: "AREA"
+
+      - name: "light3"
+        energy: 1
+        pos_x: 0
+        pos_y: 0
+        pos_z: size*12
+        type: "AREA"
+
+      - name: "light4"
+        energy: 1
+        pos_x: -size*3.33
+        pos_y: size*3.33
+        pos_z: size*10.0
+        type: "AREA"
+
+      - name: "light5"
+        energy: 2
+        pos_x: 0.0
+        pos_y: size/2
+        pos_z: size*20.0
+        type: "SUN"
+
+      - name: "light6"
+        energy: 1
+        pos_x: -size*3.33
+        pos_y: size*3.33
+        pos_z: size*10.0
+        type: "SPOT"
+
+      - name: "light7"
+        energy: 1
+        pos_x: -size*3.33
+        pos_y: size*3.33
+        pos_z: 0.0
+        type: "AREA"
+
+      - name: "light8"
+        energy: 0.2
+        pos_x: size
+        pos_y: -size
+        pos_z: size
+        type: "AREA"
+
+      - name: "light9"
+        energy: 0.2
+        pos_x: -size
+        pos_y: size/2
+        pos_z: size
+        type: "AREA"
+
+      - name: "light10"
+        energy: 0.2
+        pos_x: -size
+        pos_y: size
+        pos_z: size
+        type: "AREA"
+    pcb3d:
+      download: false
+      download_lcsc: false
+    render_options:
+      auto_crop: true
+      transparent_background: true
+      samples: 75
+      resolution_x: 1500
+      resolution_y: 1500
+    auto_camera_z_axis_factor: 1
+    point_of_view:
+      rotate_x: 15
+      rotate_y: 25
+      rotate_z: 0
+      view: top
+    outputs:
+      - type: render
+
+definitions:
+  NAME: blender
+  COMMENT: PCB 3D model in PCB3D Blender format
+  DIR: 3D

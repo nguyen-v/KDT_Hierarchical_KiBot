@@ -1,0 +1,25 @@
+# KiBot output for generating drill Gerber files
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/excellon.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: excellon
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    generate_drill_files: @GENERATE_DRILL@
+    pth_and_npth_single_file: @PTH_NPTH@
+    map: '@MAP_FORMAT@'
+
+...
+definitions:
+  NAME: drl_excellon
+  COMMENT: Drill in Excellon format
+  DIR: Manufacturing/Fabrication/Gerbers
+  GENERATE_DRILL: true
+  PTH_NPTH: false
+  MAP_FORMAT: None

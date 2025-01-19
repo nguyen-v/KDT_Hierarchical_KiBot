@@ -1,0 +1,25 @@
+# KiBot output for CSV Report
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/report.html
+
+kibot:
+  version: 1
+
+outputs:
+  - name: @NAME@
+    comment: '@COMMENT@'
+    type: report
+    category: '@DIR@'
+    dir: '@DIR@'
+    output_id: @OUTPUT_ID@
+    options:
+      output: '%f-%I%v.csv'
+      template: @TEMPLATE@
+      exclude_filter: '_mechanical'
+      csv_remove_leading_spaces: true
+...
+definitions:
+  NAME: csv_report
+  COMMENT: Report in CSV format
+  DIR: Manufacturing
+  OUTPUT_ID: ''
+  TEMPLATE: total_components

@@ -1,0 +1,25 @@
+# KiBot output for generating Drill Tables
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/excellon.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: excellon
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    generate_drill_files: false
+    table:
+      unify_pth_and_npth: '@PTH_NPTH@'
+      group_slots_and_round_holes: @GROUP_ROUND_SLOTS@
+
+...
+definitions:
+  NAME: csv_drill_table
+  COMMENT: Drill Table in CSV format
+  DIR: Manufacturing/Fabrication/Tables
+  PTH_NPTH: 'yes'
+  GROUP_ROUND_SLOTS: true

@@ -1,0 +1,21 @@
+# KiBot output for exploring PCB/SCH files
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/kicanvas.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: kicanvas
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    dnf_filter: _kibom_dnf_Config
+    overlay: true
+    source: ["schematic", "pcb", "project"]
+
+definitions:
+  NAME: html_kicanvas
+  COMMENT: KiCanvas webpage
+  DIR: KiCanvas

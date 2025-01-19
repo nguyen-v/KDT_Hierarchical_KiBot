@@ -1,0 +1,24 @@
+# KiBot output for MD Report (e.g. README.md)
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/report.html
+
+kibot:
+  version: 1
+
+outputs:
+  - name: @NAME@
+    comment: '@COMMENT@'
+    type: report
+    category: '@CATEGORY@'
+    dir: '@DIR@'
+    options:
+      output: '@OUTPUT_NAME@.md'
+      template: @TEMPLATE@
+
+...
+definitions:
+  NAME: md_readme
+  COMMENT: Report
+  DIR: .
+  CATEGORY: /
+  OUTPUT_NAME: README
+  TEMPLATE: kibot_ressources/template/readme.txt

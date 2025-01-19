@@ -1,0 +1,117 @@
+# KiBot output for generating Assembly Document in PDF format
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/pcb_print.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: pcb_print
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    colored_vias: false
+    colored_pads: false
+    color_theme: '@COLOR_THEME@'
+    output: '%f-assembly%I%v.%x'
+    format: 'PDF'
+    title: '@DOC_TITLE@ Document'
+    realistic_solder_mask: false
+    dpi: 1200
+    dnf_filter: _kibom_dnf_Config
+    # dnf_filter: '_null'
+    sheet_reference_layout: '@SHEET_WKS@'
+    include_table:
+      outputs:
+        - name: '@NAME_COMP_COUNT@'
+          text_alignment: 'left'
+          invert_columns_order: false
+          border_width: 0.4
+          header_rule_width: 0.2
+          horizontal_rule_width: 0
+          vertical_rule_width: 0
+          top_rule_width: 0
+          bottom_rule_width: 0
+          row_spacing: 3
+          column_spacing: 2
+    pages:
+      - scaling: @SCALING@
+        layer_var: ''
+        title: '@DOC_TITLE@'
+        sheet: Top/Bottom View
+        sheet_reference_color: '#000000'
+        layers:
+          - layer: '@LAYER_TITLE_PAGE@'
+            color: '#000000'
+
+      - scaling: @SCALING@
+        layer_var: "Top Assembly (Scale @SCALING@:1)"
+        title: '@DOC_TITLE@'
+        sheet: Top Assembly (Scale @SCALING@:1)
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: F.Cu
+            color: '#EEDAB5'
+          - layer: F.Mask
+            color: '#B9B9B9'
+          - layer: F.Paste
+            color: '#E1A98E'
+          - layer: F.Silkscreen
+            color: '#DB9DE1'
+          - layer: F.Fab
+            exclude_filter: '@FAB_EXCLUDE_FILTER@'
+            color: '#744679'
+          - layer: '@LAYER_ASSEMBLY_TEXT_TOP@'
+            color: '#000000'
+          - layer: '@LAYER_DNP_CROSS_TOP@'
+            color: '#D63034'
+
+      - scaling: @SCALING@
+        layer_var: "Bottom Assembly (Scale @SCALING@:1)"
+        mirror: true
+        mirror_pcb_text: false
+        title: '@DOC_TITLE@'
+        sheet: Bottom Assembly (Scale @SCALING@:1)
+        sheet_reference_color: '#000000'
+        colored_holes: true
+        holes_color: "#FFFFFF"
+        layers:
+          - layer: Edge.Cuts
+            color: '#000000'
+          - layer: B.Cu
+            color: '#D5DBF4'
+          - layer: B.Mask
+            color: '#B9B9B9'
+          - layer: B.Paste
+            color: '#BCB9DD'
+          - layer: B.Silkscreen
+            color: '#DB9DE1'
+          - layer: B.Fab
+            exclude_filter: '@FAB_EXCLUDE_FILTER@'
+            color: '#400080'
+          - layer: '@LAYER_ASSEMBLY_TEXT_BOTTOM@'
+            color: '#000000'
+          - layer: '@LAYER_DNP_CROSS_BOTTOM@'
+            color: '#D63034'
+
+...
+definitions:
+  NAME: pdf_assembly
+  COMMENT: Assembly document in PDF format
+  DIR: Manufacturing/Assembly
+  DOC_TITLE: Assembly
+  COLOR_THEME: Altium_Theme
+  SHEET_WKS: ${KIPRJMOD}/Templates/KDT_Template_PCB_GIT_A4.kicad_wks
+  SCALING: 1.0
+  FAB_EXCLUDE_FILTER: exclude_testpoints
+  LAYER_TITLE_PAGE: TitlePage
+  LAYER_ASSEMBLY_TEXT_TOP: F.AssemblyText
+  LAYER_ASSEMBLY_TEXT_BOTTOM: B.AssemblyText
+  LAYER_DNP_CROSS_TOP: F.DNP
+  LAYER_DNP_CROSS_BOTTOM: B.DNP
+  NAME_COMP_COUNT: csv_comp_count

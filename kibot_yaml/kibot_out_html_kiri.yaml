@@ -1,0 +1,23 @@
+# KiBot output for diff web page between commits
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/kiri.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: kiri
+  category: '@DIR@'
+  dir: '@DIR@'
+  layers: all
+  options:
+    keep_generated: true
+    max_commits: 3
+    revision: 'HEAD'
+    zones: 'global'
+
+definitions:
+  NAME: html_kiri
+  COMMENT: KiRi webpage
+  DIR: KiRI
