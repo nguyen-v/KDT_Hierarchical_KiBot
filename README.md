@@ -69,12 +69,13 @@ An example project using this template can be found [here](https://github.com/ng
     **Windows**:
 
     ```
-    cd "C:\Program Files\KiCad\8.0\share\kicad\template\KiCAD_Templates"
+    cd "C:\Program Files\KiCad\8.0\share\kicad\template"
     ```
 
     **Linux**:
     ```
     cd /usr/share/kicad/template
+    sudo chmod 777 ./
     ```
 
 2. Clone the repository
