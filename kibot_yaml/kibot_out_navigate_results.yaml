@@ -1,5 +1,5 @@
 # KiBot output for generating an HTML page for navigating the results
-# https://kibot.readthedocs.io/en/latest/configuration/outputs/navigate_results_modern.html
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/navigate_results_rb.html
 
 kibot:
   version: 1
@@ -7,15 +7,18 @@ kibot:
 outputs:
 - name: @NAME@
   comment: '@COMMENT@'
-  type: navigate_results_modern
+  type: navigate_results_rb
   # category: '@DIR@'
   dir: '@DIR@'
   options:
     link_from_root: 'index.html'
     logo: '@LOGO@'
+    logo_force_height: 40
     logo_url: '@LOGO_URL@'
     nav_bar: true
     render_markdown: true
+    display_category_images: false
+    display_kibot_version: false
     title: '@TITLE@'
     title_url: '@LOGO_URL@'
 
