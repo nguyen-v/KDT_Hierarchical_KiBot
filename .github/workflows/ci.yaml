@@ -20,7 +20,7 @@ env:
   # CHECKED: will generate both schematic and PCB documents, with ERC/DRC
   # RELEASED: similar to CHECKED, automatically selected when pushing a tag to master
 
-  kibot_variant: CHECKED  
+  kibot_variant: DRAFT
 
 permissions:
   contents: write
@@ -132,6 +132,15 @@ jobs:
         with:
           targets: notes
           skip: all
+          variant: ${{ env.kibot_variant }}
+          config: ${{ env.kibot_config }}
+
+      - name: Generate README only (only for DRAFT variant)
+        if: ${{ env.kibot_variant == 'DRAFT' }}
+        uses: INTI-CMNB/KiBot@v2_dk8
+        with:
+          targets: md_readme
+          skip: draw_fancy_stackup,set_text_variables,erc,drc
           variant: ${{ env.kibot_variant }}
           config: ${{ env.kibot_config }}
 

@@ -140,38 +140,40 @@ if [[ "$server_flag" == true ]]; then
     exit 0
 fi
 
+# Determine output directory based on variant
+case "$variant" in
+    DRAFT|PRELIMINARY|CHECKED|RELEASED)
+        output_dir="."
+        ;;
+    *)
+        output_dir="Variants"
+        ;;
+esac
+
 # Determine command based on variant
 if [[ "$costs_flag" == true ]]; then
-    kibot_command="$kibot_base --skip-pre erc,drc,draw_fancy_stackup $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' xlsx_bom"
+    kibot_command1="$kibot_base --skip-pre erc,drc,draw_fancy_stackup $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' xlsx_bom"
 else
     case "$variant" in
-        CHECKED|RELEASED)
-            kibot_command="$kibot_base $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' all_group"
-            ;;
         DRAFT)
-            kibot_command="$kibot_base --skip-pre draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' draft_group"
+            kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' md_readme"
+            kibot_command2="$kibot_base --skip-pre draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' draft_group"
             ;;
         PRELIMINARY)
-            kibot_command="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=DRAFT -E REVISION='$revision' all_group"
+            kibot_command1="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
+            kibot_command2="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' all_group"
             ;;
-        *)
-            output_dir="Variants"
-            kibot_command1="$kibot_base --skip-pre all $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
+        CHECKED|RELEASED|*)
+            kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
             kibot_command2="$kibot_base $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' all_group"
             ;;
     esac
 fi
 
 # Execute the commands
-if [[ "$costs_flag" == true ]]; then
-    echo -e "${GREEN}Running: $kibot_command${NC}"
-    eval $kibot_command
-elif [[ "$variant" == "DRAFT" || "$variant" == "PRELIMINARY" || "$variant" == "CHECKED" || "$variant" == "RELEASED" ]]; then
-    echo -e "${GREEN}Running: $kibot_command${NC}"
-    eval $kibot_command
-else
-    echo -e "${GREEN}Running: $kibot_command1${NC}"
-    eval $kibot_command1
+echo -e "${GREEN}Running: $kibot_command1${NC}"
+eval $kibot_command1
+if [[ "$costs_flag" == false ]]; then
     echo -e "${GREEN}Running: $kibot_command2${NC}"
     eval $kibot_command2
 fi
