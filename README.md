@@ -577,36 +577,36 @@ The following directory structure is used in the template. Folders marked as 'op
 ├─ Computations       # Misc calculations (optional)
 ├─ HTML               # HTML files for generated webpage
 ├─ Images             # Pictures and renders
-|
+│
 ├─ kibot_resources
 │  ├─ colors          # Color theme for KiCad
 │  ├─ fonts           # Fonts used in the project
 │  ├─ scripts         # External scripts used with KiBot
-|  └─ templates       # Templates for KiBot generated reports
-|
+│  └─ templates       # Templates for KiBot generated reports
+│
 ├─ kibot_yaml         # KiBot YAML config files
 ├─ KiRI               # KiRI (PCB diff viewer) files
-|
+│
 ├─ lib                # Footprint and symbol libraries (optional)
 │  ├─ 3d_models       # Component 3D models
 │  ├─ lib_fp          # Footprint libraries
 │  └─ lib_sym         # Symbol libraries
-|
+│
 ├─ Logos              # Logos (optional)
-|
+│
 ├─ Manufacturing
 │  ├─ Assembly        # Assembly documents (BoM, pos, notes)
-|  |
-|  └─ Fabrication     # Fabrication documents (ZIP, notes)
+│  │
+│  └─ Fabrication     # Fabrication documents (ZIP, notes)
 │     ├─ Drill Tables # CSV drill tables
-|     └─ Gerbers      # Gerbers
-|
+│     └─ Gerbers      # Gerbers
+│
 ├─ Report             # Reports for ERC/DRC
 ├─ Schematic          # PDF of schematic
 ├─ Templates          # Title block templates
 ├─ Testing
-|  └─ Testpoints      # Testpoints tables      
-|
+│  └─ Testpoints      # Testpoints tables      
+│
 └─ Variants           # Outputs for assembly variants (optional)
 ```
 
