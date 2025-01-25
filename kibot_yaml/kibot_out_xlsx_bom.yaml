@@ -53,5 +53,5 @@ definitions:
   NAME: xlsx_costs_bom
   COMMENT: Costs Bill of Materials in XLSX format
   DIR: Manufacturing/Assembly
-  KICOST_CONFIG: kibot_yaml/kicost_config_local.yaml
+  KICOST_CONFIG: ''
   FILT_PRE_TRANSFORM: field_rename

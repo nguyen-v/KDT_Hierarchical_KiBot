@@ -152,7 +152,7 @@ esac
 
 # Determine command based on variant
 if [[ "$costs_flag" == true ]]; then
-    kibot_command1="$kibot_base --skip-pre erc,drc,draw_fancy_stackup $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' xlsx_bom"
+    kibot_command1="$kibot_base --skip-pre erc,drc,draw_fancy_stackup $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' -E KICOST_CONFIG='kibot_yaml/kicost_config_local.yaml' xlsx_bom"
 else
     case "$variant" in
         DRAFT)
