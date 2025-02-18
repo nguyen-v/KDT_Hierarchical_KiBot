@@ -10,7 +10,7 @@
   </a>
 </p>
 
-A KiCad 8 template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 will most likely be supported in the near future.
+A KiCad 8/9 template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master).
 
 A video tutorial for setting up this template is available [here]().
 
@@ -175,11 +175,14 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
 - Any custom font used in the project must be added to the [`kibot_resources/fonts`](kibot_resources/fonts) folder.
 
+> [!NOTE]
+> KiCad 9 allows for fonts to be embedded in the schematic. However, it is still good practice to add the fonts in the folder mentioned.
+
 - There are two branches, a `main` and a `dev` branch. The `dev` branch is the working branch. The `main` should only be used for pull requests and releases.
 
 - Changes should be recorded in the [`CHANGELOG.md`](CHANGELOG.md) file, and should respect [semantic versioning guidelines](https://semver.org/) for [hardware](https://www.maskset.net/blog/2023/02/26/semantic-versioning-for-hardware/). The changes of the current version should be added under the `[Unreleased]` section.
 
-- The `variant` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L23) should be selected according to the project progress.
+- The `variant` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L21) should be selected according to the project progress.
 
   ```
     # Used variant. We assume:
@@ -190,6 +193,8 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
     kibot_variant: CHECKED  
   ```
+
+- The `kicad_version` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L24) should be selected according to the desired KiCad version. Supported versions are 8 and 9.
 
 - You should work locally on the `dev` branch. When a change is made, the changes should be pushed to GitHub which will trigger the KiBot workflow. The generated files will be committed and pushed back to the repository.
 
@@ -246,21 +251,38 @@ The easiest way to install KiBot if custom development is not required is with d
 
 1.  Install **and run** [Docker Desktop](https://docs.docker.com/desktop/)
   
-2.  Run the script `docker_kibot_windows.bat` or `docker_kibot_linux.sh` depending on your platform in [`kibot_resources/scripts`](kibot_resources/scripts). Currently tested on Windows and WSL2.
-  
-  **Windows**:
+2.  Run the script `docker_kibot_windows.bat` or `docker_kibot_linux.sh` depending on your platform in [`kibot_resources/scripts`](kibot_resources/scripts). Currently tested on Windows and WSL2. This should pull and start a docker running the `dev` branch of KiBot. You should have access to your local files.
+
+***
+**KiCad 8**
+
+  Windows:
 
   ```
   .\docker_kibot_windows.bat
   ```
 
-  **Linux**:
+  Linux:
 
   ```
   ./docker_kibot_linux.sh
   ```
 
-This should pull and start a docker running the `dev` branch of KiBot, on KiCad 8. You should have access to your local files.
+***
+**KiCad 9**
+
+  Windows:
+
+  ```
+  .\docker_kibot_windows.bat -v 9
+  ```
+
+  Linux:
+
+  ```
+  ./docker_kibot_linux.sh -v 9
+  ```
+  ***
 
 Once in the docker, you can use the [`kibot_launch.sh`](kibot_launch.sh) script to generate and visualize outputs.
 
