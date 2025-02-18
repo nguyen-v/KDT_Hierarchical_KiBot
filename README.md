@@ -98,17 +98,20 @@ You should move this file to your KiCad Themes folder.
 
     `~/.config/kicad/8.0/colors`
 
-1. Create a new project with:
+> [!NOTE]
+> In the steps above, replace ```8.0``` with ```9.0``` for KiCad 9
+
+5. Create a new project with:
 
     **File → New Project From Template** and select `KDT_Hierarchical_KiBot`
 
-2. Create a new `dev` branch. This will be the working branch. 
+6. Create a new `dev` branch. This will be the working branch. 
    
    ```
    git checkout -b dev
    ```
    
-3. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L528) according to your project:
+7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L528) according to your project:
     ```
       # Metadata ===================================================================
 
@@ -161,11 +164,11 @@ You should move this file to your KiCad Themes folder.
       KEY_COLOR: '#00FF00' # background color to remove
     ```
 
-4. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
+8. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
 
-5. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
+9. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
 
-6. Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
+10.  Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
 
 ## USAGE
 
