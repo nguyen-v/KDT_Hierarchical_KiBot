@@ -148,10 +148,6 @@ groups:
       - @STEP_OUTPUT@
       # - @BLENDER_OUTPUT@ # looks kinda bad
 
-  - name: ki9
-    outputs:
-      - @ODB_OUTPUT@
-
 import:
 
   # Global parameters ==========================================================

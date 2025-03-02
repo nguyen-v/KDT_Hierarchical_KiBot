@@ -18,4 +18,3 @@ definitions:
   NAME: zip_odb
   COMMENT: ODB++ in ZIP format
   DIR: Manufacturing/Fabrication
-  PLOT_REFS: true
