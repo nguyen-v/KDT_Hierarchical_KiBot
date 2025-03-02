@@ -111,7 +111,7 @@ You should move this file to your KiCad Themes folder.
    git checkout -b dev
    ```
    
-7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L559) according to your project:
+7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L555) according to your project:
     ```
       # Metadata ===================================================================
 
@@ -334,7 +334,7 @@ You can also specify a variant if desired:
 For more information, please have a look at the official [documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html)
 
 > [!CAUTION]
-> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L579) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
+> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L575) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
 
 <p align="center">
   <img alt="XLSX BoM" src="https://github.com/user-attachments/assets/e7683ae3-efcc-4f64-b4b7-c4c39c3c9d48">
@@ -420,7 +420,7 @@ To synchronise the Revision History of the schematic with the `CHANGELOG.md` fil
 
 ### PCB
 
-The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L634). 
+The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L630). 
 
 ```
   LAYER_TITLE_PAGE: TitlePage
