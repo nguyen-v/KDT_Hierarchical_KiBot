@@ -106,16 +106,23 @@ jobs:
             echo "kibot_variant=${{ env.kibot_variant }}" >> $GITHUB_ENV
           fi
 
+          # Determine group argument based on KiCad version
+          if [[ "$kicad_version" == "9" ]]; then
+            group_arg="all_group_k9"
+          else
+            group_arg="all_group"
+          fi
+
           # Determine additional_args based on the variant
           case "$kibot_variant" in
             "DRAFT")
               additional_args="--skip-pre draw_fancy_stackup,erc,drc ${version_arg} draft_group"
               ;;
             "PRELIMINARY")
-              additional_args="--skip-pre erc,drc ${version_arg} all_group"
+              additional_args="--skip-pre erc,drc ${version_arg} ${group_arg}"
               ;;
             "CHECKED"|"RELEASED")
-              additional_args="${version_arg} all_group"
+              additional_args="${version_arg} ${group_arg}"
               ;;
             *)
               echo "Unknown variant: $kibot_variant"

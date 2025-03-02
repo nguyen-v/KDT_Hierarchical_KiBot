@@ -63,6 +63,19 @@ groups:
       - @HTML_KIRI_OUTPUT@
       - @HTML_NAV_RES_OUTPUT@
 
+  - name: all_group_k9
+    outputs:
+      - @NETLIST_OUTPUT@
+      - bom
+      - 3d
+      - fab_k9
+      - assembly
+      - @PDF_SCHEMATIC_OUTPUT@
+      - @MD_README_OUTPUT@
+      # - @HTML_KICANVAS_OUTPUT@ # Very experimental, we exclude it for now
+      - @HTML_KIRI_OUTPUT@
+      - @HTML_NAV_RES_OUTPUT@
+
   - name: draft_group
     outputs:
       - @NETLIST_OUTPUT@
@@ -74,6 +87,17 @@ groups:
     outputs:
       - tables
       - @GERBER_OUTPUT@
+      - @EXCELLON_DRILL_OUTPUT@
+      # - @DXF_DRILL_MAP_OUTPUT@
+      - @PDF_DRILL_MAP_OUTPUT@
+      - @PDF_FABRICATION_OUTPUT@
+      - @ZIP_COMPRESS_FAB_OUTPUT@
+
+  - name: fab_k9
+    outputs:
+      - tables
+      - @GERBER_OUTPUT@
+      - @ODB_OUTPUT@
       - @EXCELLON_DRILL_OUTPUT@
       # - @DXF_DRILL_MAP_OUTPUT@
       - @PDF_DRILL_MAP_OUTPUT@
@@ -123,6 +147,10 @@ groups:
     outputs:
       - @STEP_OUTPUT@
       # - @BLENDER_OUTPUT@ # looks kinda bad
+
+  - name: ki9
+    outputs:
+      - @ODB_OUTPUT@
 
 import:
 
@@ -229,6 +257,13 @@ import:
       COMMENT: Gerbers in GBR format
       DIR: @GERBERS_DIR@
       PLOT_REFS: @PLOT_REFS@
+
+  # ODB++ ----------------------------------------------------------------------
+  - file: kibot_out_odb.yaml
+    definitions:
+      NAME: @ODB_OUTPUT@
+      COMMENT: ODB++ in ZIP format
+      DIR: @FABRICATION_DIR@
 
   # Drill files
   - file: kibot_out_excellon_drill.yaml
@@ -622,6 +657,7 @@ definitions:
   NETLIST_OUTPUT: netlist
 
   GERBER_OUTPUT: gbr_gerbers
+  ODB_OUTPUT: zip_odb
   EXCELLON_DRILL_OUTPUT: drl_excellon
   PDF_DRILL_MAP_OUTPUT: pdf_drill_map
   DXF_DRILL_MAP_OUTPUT: dxf_drill_map
