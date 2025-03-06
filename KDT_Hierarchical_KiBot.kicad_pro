@@ -830,11 +830,11 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "amulet_controller.net",
+      "netlist": "KDT_Hierarchical_KiBot.net",
       "plot": "Manufacturing/Fabrication/Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "STEP_Blender/amulet_controller.step",
+      "step": "STEP_Blender/KDT_Hierarchical_KiBot.step",
       "svg": "",
       "vrml": ""
     },
@@ -842,7 +842,7 @@
   },
   "schematic": {
     "annotate_start_num": 0,
-    "bom_export_filename": "Manufacturing/Assembly/amulet_controller-bom-k8.csv",
+    "bom_export_filename": "Manufacturing/Assembly/KDT_Hierarchical_KiBot-bom-k8.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
