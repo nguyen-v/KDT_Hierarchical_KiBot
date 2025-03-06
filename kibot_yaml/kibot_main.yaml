@@ -467,6 +467,7 @@ import:
       COMMENT: Schematic in PDF format
       COLOR_THEME: @COLOR_THEME@
       DIR: @SCHEMATIC_DIR@
+      DEFAULT_FONT: 'Times New Roman'
 
   # Fabrication Document in PDF format
   - file: kibot_out_pdf_fabrication.yaml
