@@ -17,7 +17,7 @@ env:
   # DRAFT: only schematic in progress, will only generate schematic PDF, netlist and BoM
   # PRELIMINARY: will generate both schematic and PCB documents, but no ERC/DRC
   # CHECKED: will generate both schematic and PCB documents, with ERC/DRC
-  # RELEASED: similar to CHECKED, automatically selected when pushing a tag to master
+  # RELEASED: similar to CHECKED, automatically selected when pushing a tag to main
   kibot_variant: DRAFT
 
   # Set the KiCad version to 8 (or change to 9 for the new version)
@@ -219,8 +219,13 @@ jobs:
             git pull origin ${{ github.ref_name }} --tags --force
           fi
 
-      - name: Discard changes to .kicad_pcb files
-        run: git checkout HEAD -- *.kicad_pcb
+      - name: Discard changes to .kicad_pcb files and remove temp files
+        run: | 
+          git checkout HEAD -- $(git ls-files "*.kicad_pcb")
+          git clean -f "*.kicad_pcb"
+          git clean -f "*.kicad_pro"
+          git clean -f "*.kicad_dru"
+          git clean -f "*.kicad_prl"
 
       - name: Update Outputs
         uses: stefanzweifel/git-auto-commit-action@v5
