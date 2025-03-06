@@ -1,4 +1,4 @@
-<h1 align="center">KiCad Template for CI/CD with KiBot</h1>
+<h1 align="center">KiCad 8/9 Template for CI/CD with KiBot</h1>
 
 <p align="center">
   <a href=https://www.kicad.org/>
@@ -10,7 +10,7 @@
   </a>
 </p>
 
-A KiCad 8/9 template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master).
+A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 support is still experimental.
 
 A video tutorial for setting up this template is available [here]().
 
@@ -111,7 +111,7 @@ You should move this file to your KiCad Themes folder.
    git checkout -b dev
    ```
    
-7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L555) according to your project:
+7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L556) according to your project:
     ```
       # Metadata ===================================================================
 
@@ -227,10 +227,9 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
   This will start a KiBot run with the variant set as `RELEASED`. When the run completes, it also creates a release with assets and updates the `CHANGELOG.md` file (renames the `[Unreleased]` section with the pushed tag and creates a new `[Unreleased]` section).
 
-- After a release, you will need to update your `main` branch and rebase your `dev` branch with the `main` branch:
+- After a release, you will need to update your `main` branch to be up-to-date with the remote:
 
   ```
-  git fetch origin
   git pull
   ```
 
@@ -289,6 +288,16 @@ The easiest way to install KiBot if custom development is not required is with d
 
 Once in the docker, you can use the [`kibot_launch.sh`](kibot_launch.sh) script to generate and visualize outputs.
 
+```
+./kibot_launch.sh
+```
+
+You can get more information about the usage with
+
+```
+./kibot_launch.sh --help
+```
+
 When running the script with no arguments, it will default to the `CHECKED` variant and generate all outputs. A variant can be set with the `-v` flag. If a custom variant is used (i.e. other than the default variants `DRAFT`, `PRELIMINARY`, `CHECKED`, `RELEASED`), the outputs will be generated in the `Variants` folder.
 
 Each default variant will have different KiBot flags, which is useful for different phases of the project:
@@ -334,7 +343,7 @@ You can also specify a variant if desired:
 For more information, please have a look at the official [documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html)
 
 > [!CAUTION]
-> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L575) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
+> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L576) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
 
 <p align="center">
   <img alt="XLSX BoM" src="https://github.com/user-attachments/assets/e7683ae3-efcc-4f64-b4b7-c4c39c3c9d48">
@@ -420,7 +429,7 @@ To synchronise the Revision History of the schematic with the `CHANGELOG.md` fil
 
 ### PCB
 
-The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L630). 
+The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L631). 
 
 ```
   LAYER_TITLE_PAGE: TitlePage
@@ -652,7 +661,7 @@ The following directory structure is used in the template. Folders marked as 'op
 
 - [Video Tutorial for this template]()
 
-- [Example project (from the video tutorial)]()
+- [Example project (from the video tutorial)](https://github.com/nguyen-v/KiBot_Project_Test)
 
 - [Example project (Amulet)](https://github.com/nguyen-v/amulet_controller_kibot/tree/master)
 
