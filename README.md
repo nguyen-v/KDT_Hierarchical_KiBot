@@ -1,4 +1,4 @@
-<h1 align="center">KiCad Template for CI/CD with KiBot</h1>
+<h1 align="center">KiCad 8/9 Template for CI/CD with KiBot</h1>
 
 <p align="center">
   <a href=https://www.kicad.org/>
@@ -10,7 +10,7 @@
   </a>
 </p>
 
-A KiCad 8 template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 will most likely be supported in the near future.
+A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 support is still experimental.
 
 A video tutorial for setting up this template is available [here]().
 
@@ -98,17 +98,20 @@ You should move this file to your KiCad Themes folder.
 
     `~/.config/kicad/8.0/colors`
 
-1. Create a new project with:
+> [!NOTE]
+> In the steps above, replace ```8.0``` with ```9.0``` for KiCad 9
+
+5. Create a new project with:
 
     **File → New Project From Template** and select `KDT_Hierarchical_KiBot`
 
-2. Create a new `dev` branch. This will be the working branch. 
+6. Create a new `dev` branch. This will be the working branch. 
    
    ```
    git checkout -b dev
    ```
    
-3. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L528) according to your project:
+7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L556) according to your project:
     ```
       # Metadata ===================================================================
 
@@ -161,11 +164,11 @@ You should move this file to your KiCad Themes folder.
       KEY_COLOR: '#00FF00' # background color to remove
     ```
 
-4. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
+8. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
 
-5. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
+9. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
 
-6. Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
+10.  Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
 
 ## USAGE
 
@@ -175,11 +178,14 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
 - Any custom font used in the project must be added to the [`kibot_resources/fonts`](kibot_resources/fonts) folder.
 
+> [!NOTE]
+> KiCad 9 allows for fonts to be embedded in the schematic. However, it is still good practice to add the fonts in the folder mentioned.
+
 - There are two branches, a `main` and a `dev` branch. The `dev` branch is the working branch. The `main` should only be used for pull requests and releases.
 
 - Changes should be recorded in the [`CHANGELOG.md`](CHANGELOG.md) file, and should respect [semantic versioning guidelines](https://semver.org/) for [hardware](https://www.maskset.net/blog/2023/02/26/semantic-versioning-for-hardware/). The changes of the current version should be added under the `[Unreleased]` section.
 
-- The `variant` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L23) should be selected according to the project progress.
+- The `variant` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L21) should be selected according to the project progress.
 
   ```
     # Used variant. We assume:
@@ -190,6 +196,8 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
     kibot_variant: CHECKED  
   ```
+
+- The `kicad_version` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L24) should be selected according to the desired KiCad version. Supported versions are 8 and 9.
 
 - You should work locally on the `dev` branch. When a change is made, the changes should be pushed to GitHub which will trigger the KiBot workflow. The generated files will be committed and pushed back to the repository.
 
@@ -219,10 +227,9 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
   This will start a KiBot run with the variant set as `RELEASED`. When the run completes, it also creates a release with assets and updates the `CHANGELOG.md` file (renames the `[Unreleased]` section with the pushed tag and creates a new `[Unreleased]` section).
 
-- After a release, you will need to update your `main` branch and rebase your `dev` branch with the `main` branch:
+- After a release, you will need to update your `main` branch to be up-to-date with the remote:
 
   ```
-  git fetch origin
   git pull
   ```
 
@@ -246,23 +253,50 @@ The easiest way to install KiBot if custom development is not required is with d
 
 1.  Install **and run** [Docker Desktop](https://docs.docker.com/desktop/)
   
-2.  Run the script `docker_kibot_windows.bat` or `docker_kibot_linux.sh` depending on your platform in [`kibot_resources/scripts`](kibot_resources/scripts). Currently tested on Windows and WSL2.
-  
-  **Windows**:
+2.  Run the script `docker_kibot_windows.bat` or `docker_kibot_linux.sh` depending on your platform in [`kibot_resources/scripts`](kibot_resources/scripts). Currently tested on Windows and WSL2. This should pull and start a docker running the `dev` branch of KiBot. You should have access to your local files.
+
+***
+**KiCad 8**
+
+  Windows:
 
   ```
   .\docker_kibot_windows.bat
   ```
 
-  **Linux**:
+  Linux:
 
   ```
   ./docker_kibot_linux.sh
   ```
 
-This should pull and start a docker running the `dev` branch of KiBot, on KiCad 8. You should have access to your local files.
+***
+**KiCad 9**
+
+  Windows:
+
+  ```
+  .\docker_kibot_windows.bat -v 9
+  ```
+
+  Linux:
+
+  ```
+  ./docker_kibot_linux.sh -v 9
+  ```
+  ***
 
 Once in the docker, you can use the [`kibot_launch.sh`](kibot_launch.sh) script to generate and visualize outputs.
+
+```
+./kibot_launch.sh
+```
+
+You can get more information about the usage with
+
+```
+./kibot_launch.sh --help
+```
 
 When running the script with no arguments, it will default to the `CHECKED` variant and generate all outputs. A variant can be set with the `-v` flag. If a custom variant is used (i.e. other than the default variants `DRAFT`, `PRELIMINARY`, `CHECKED`, `RELEASED`), the outputs will be generated in the `Variants` folder.
 
@@ -309,7 +343,7 @@ You can also specify a variant if desired:
 For more information, please have a look at the official [documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html)
 
 > [!CAUTION]
-> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L544) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
+> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L576) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
 
 <p align="center">
   <img alt="XLSX BoM" src="https://github.com/user-attachments/assets/e7683ae3-efcc-4f64-b4b7-c4c39c3c9d48">
@@ -395,7 +429,7 @@ To synchronise the Revision History of the schematic with the `CHANGELOG.md` fil
 
 ### PCB
 
-The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L599). 
+The layer names of the PCB should follow the ones defined in [kibot_main.yaml](kibot_yaml/kibot_main.yaml#L631). 
 
 ```
   LAYER_TITLE_PAGE: TitlePage
@@ -627,7 +661,7 @@ The following directory structure is used in the template. Folders marked as 'op
 
 - [Video Tutorial for this template]()
 
-- [Example project (from the video tutorial)]()
+- [Example project (from the video tutorial)](https://github.com/nguyen-v/KiBot_Project_Test)
 
 - [Example project (Amulet)](https://github.com/nguyen-v/amulet_controller_kibot/tree/master)
 

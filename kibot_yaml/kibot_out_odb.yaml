@@ -1,0 +1,20 @@
+# KiBot output for generating ODB++ files
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/odb.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: odb
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    dnf_filter: _kibom_dnf_Config
+
+...
+definitions:
+  NAME: zip_odb
+  COMMENT: ODB++ in ZIP format
+  DIR: Manufacturing/Fabrication

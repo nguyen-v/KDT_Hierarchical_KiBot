@@ -130,6 +130,14 @@ if [[ -z "$revision" ]]; then
     fi
 fi
 
+# Check KiCad version and set group command accordingly
+kicad_version=$(kicad-cli --version)
+if [ "$(printf '%s\n' "9.0.0" "$kicad_version" | sort -V | head -n1)" = "9.0.0" ]; then
+    all_group="all_group_k9"
+else
+    all_group="all_group"
+fi
+
 # Handle server flag
 if [[ "$server_flag" == true ]]; then
     echo -e "${GREEN}Starting HTTP server on port $server_port...${NC}"
@@ -165,7 +173,7 @@ else
             ;;
         CHECKED|RELEASED|*)
             kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
-            kibot_command2="$kibot_base $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' all_group"
+            kibot_command2="$kibot_base $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' $all_group"
             ;;
     esac
 fi
