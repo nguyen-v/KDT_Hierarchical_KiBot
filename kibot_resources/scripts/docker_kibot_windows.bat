@@ -24,4 +24,5 @@ docker run --rm -it ^
     --volume=C:\Users\%USER_NAME%:/home/%USER_NAME%:rw ^
     --volume=/tmp/.X11-unix:/tmp/.X11-unix ^
     --entrypoint /bin/bash ^
+    -p 8000:8000 ^
     %IMAGE%
