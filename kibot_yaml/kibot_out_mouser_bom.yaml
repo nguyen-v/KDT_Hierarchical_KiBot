@@ -1,0 +1,45 @@
+# KiBot output for generating Bill of Materials in XLSX format for the Mouser BOM tool
+# https://kibot.readthedocs.io/en/latest/configuration/outputs/bom.html
+
+kibot:
+  version: 1
+
+outputs:
+- name: @NAME@
+  comment: '@COMMENT@'
+  type: bom
+  category: '@DIR@'
+  dir: '@DIR@'
+  options:
+    format: XLSX
+    count_smd_tht: true
+    output: "BOM_Mouser.%x"
+    ref_separator: ','
+    xlsx:
+      kicost: false
+      specs: false
+      title: "%f BOM"
+      hide_stats_info: true
+      hide_pcb_info: true
+      logo: false
+      col_colors: false
+      style: "classic"
+      title: ""
+
+    columns:
+      - field: manf#
+        name: Manufacturer Part Number
+      - field: mouser#
+        name: Mouser Part Number
+      - field: manf#
+        name: Manufacturer Name
+      - field: Value
+        name: Description
+      - field: Build Quantity
+        name: Quantity
+
+...
+definitions:
+  NAME: mouser_bom
+  COMMENT: BOM for the Mouser BOM-Tool
+  DIR: Purchasing
