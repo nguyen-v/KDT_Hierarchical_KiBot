@@ -1,3 +1,8 @@
+PROJECT_NAME: RohitBoard
+BOARD_NAME: RohitBoard_v1
+COMPANY: Rohit Student
+DESIGNER: Rohit Nikam
+GIT_URL: 'https://github.com/karbanrohit/KDT_Hierarchical_KiBot'
 # KiBot configuration file for KDT_Hierarchical Template
 # KiCad 8.0
 
