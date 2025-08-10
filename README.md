@@ -1,3 +1,13 @@
+# My learning fork
+
+Name: Rohit Nikam  
+Purpose: Practicing the KiCad + KiBot workflow and learning how docs get generated.
+
+
+
+
+
+
 <h1 align="center">KiCad 8/9 Template for CI/CD with KiBot</h1>
 
 <p align="center">
