@@ -253,6 +253,28 @@
 	(property "SHEET_NAME_9" "......................................")
 	(property "VARIANT" "")
 	(net 0 "")
+	(gr_arc
+		(start 287 29)
+		(mid 288.903806 24.403806)
+		(end 293.5 22.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.Cu")
+		(uuid "5c101737-2ddf-4380-88a6-5263116e87ae")
+	)
+	(gr_arc
+		(start 266.830027 28.71813)
+		(mid 267.247381 27.520646)
+		(end 268 26.5)
+		(stroke
+			(width 0.2)
+			(type default)
+		)
+		(layer "F.Cu")
+		(uuid "d4daa30e-10af-4923-8f65-262f79ab3bf5")
+	)
 	(gr_rect
 		(start 172 48.5)
 		(end 254.5 131)
