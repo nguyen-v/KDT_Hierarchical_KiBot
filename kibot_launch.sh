@@ -132,7 +132,7 @@ fi
 
 # Check KiCad version and set group command accordingly
 kicad_version=$(kicad-cli --version)
-if [ "$(printf '%s\n' "9.0.0" "$kicad_version" | sort -V | head -n1)" = "9.0.0" ]; then
+if [[ "$kicad_version" =~ ^9\.[0-9]+\.[0-9]+$ ]]; then
     all_group="all_group_k9"
 else
     all_group="all_group"
@@ -169,7 +169,7 @@ else
             ;;
         PRELIMINARY)
             kibot_command1="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
-            kibot_command2="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' all_group"
+            kibot_command2="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' $all_group"
             ;;
         CHECKED|RELEASED|*)
             kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
