@@ -41,6 +41,7 @@ outputs:
       - "Description"
       - "manf"
       - "manf#"
+      - "Supplier Part Number"
       # - "arrow#"
       # - "digikey#"
       # - "farnell#"

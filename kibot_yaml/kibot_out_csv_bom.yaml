@@ -28,6 +28,7 @@ outputs:
       - "Description"
       - "@MAN_FIELD@"
       - "@MPN_FIELD@"
+      - "Supplier Part Number"
       # - "arrow#"
       # - "digikey#"
       # - "farnell#"
