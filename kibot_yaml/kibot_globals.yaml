@@ -8,6 +8,7 @@ global:
   out_dir: '@OUTPUT_DIR@'
   dnp_cross_top_layer: '@LAYER_DNP_TOP@'
   dnp_cross_bottom_layer: '@LAYER_DNP_BOTTOM@'
+  disable_kicad_cross_on_fab: true
   extra_pth_drill: 0 # for annular ring computation.
   filters:
     # 'KiCad config without environment.vars section'
