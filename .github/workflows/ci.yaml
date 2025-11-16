@@ -20,8 +20,8 @@ env:
   # RELEASED: similar to CHECKED, automatically selected when pushing a tag to main
   kibot_variant: DRAFT
 
-  # Set the KiCad version to 8 (or change to 9 for the new version)
-  kicad_version: 8
+  # Set the KiCad version to 9
+  kicad_version: 9
  
 permissions:
   contents: write
