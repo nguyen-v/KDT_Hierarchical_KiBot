@@ -12,7 +12,7 @@
 
 A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 support is still experimental.
 
-A video tutorial for setting up this template is available [here]().
+A video tutorial for setting up this template is available [here](https://www.youtube.com/watch?v=63R6Wnx44uY).
 
 An example project using this template can be found [here](https://github.com/nguyen-v/amulet_controller_kibot/tree/master).
 
@@ -659,7 +659,7 @@ The following directory structure is used in the template. Folders marked as 'op
 
 ## RESOURCES
 
-- [Video Tutorial for this template]()
+- [Video Tutorial for this template](https://www.youtube.com/watch?v=63R6Wnx44uY)
 
 - [Example project (from the video tutorial)](https://github.com/nguyen-v/KiBot_Project_Test)
 
