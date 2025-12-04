@@ -10,7 +10,7 @@
   </a>
 </p>
 
-A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master). KiCad 9 support is still experimental.
+A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master).
 
 A video tutorial for setting up this template is available [here](https://www.youtube.com/watch?v=63R6Wnx44uY).
 
@@ -104,6 +104,9 @@ You should move this file to your KiCad Themes folder.
 5. Create a new project with:
 
     **File → New Project From Template** and select `KDT_Hierarchical_KiBot`
+
+> [!CAUTION]
+> Under Linux, the ```.github``` folder from the template needs to be copied at the root of the project directory, as it is not copied when creating a project from a template in KiCad.
 
 6. Create a new `dev` branch. This will be the working branch. 
    
