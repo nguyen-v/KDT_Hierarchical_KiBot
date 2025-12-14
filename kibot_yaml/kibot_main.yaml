@@ -182,14 +182,14 @@ import:
       NAME: @FILT_TP_TOP_ONLY@
       COMMENT: Select only top testpoints
       EXCLUDE_BOTTOM: true
-      EXCLUDE_REFS: @EXCLUDE_REFS@
+      EXCLUDE_REFS: "@EXCLUDE_REFS@"
 
   - file: kibot_filt_testpoints.yaml
     definitions:
       NAME: @FILT_TP_BOTTOM_ONLY@
       COMMENT: Select only bottom testpoints
       EXCLUDE_TOP: true
-      EXCLUDE_REFS: @EXCLUDE_REFS@
+      EXCLUDE_REFS: "@EXCLUDE_REFS@"
 
   # Preflights =================================================================
 
