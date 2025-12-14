@@ -75,28 +75,34 @@ An example project using this template can be found [here](https://github.com/ng
 
     **Linux**:
     ```
-    cd /usr/share/kicad/template
-    sudo chmod 777 ./
+    cd ~/.local/share/kicad/8.0/template
     ```
 
 2. Clone the repository
 
     ```
-    git clone git@github.com:nguyen-v/KDT_Hierarchical_KiBot.git
+    git clone https://github.com/nguyen-v/KDT_Hierarchical_KiBot.git
     ```
 
 3. Install the fonts inside of [`kibot_resources/fonts`](kibot_resources/fonts) if not already installed on the system.
 
-4. A custom color theme ([`Altium_Theme.json`](kibot_resources/colors/Altium_Theme.json)) is also provided in [`kibot_resources/colors`](kibot_resources/colors).
+   **Linux**:
+
+   ```
+   cp -i KDT_Hierarchical_KiBot/kibot_resources/fonts/*.ttf ~/.fonts/
+   fc-cache
+   ```
+
+5. A custom color theme ([`Altium_Theme.json`](kibot_resources/colors/Altium_Theme.json)) is also provided in [`kibot_resources/colors`](kibot_resources/colors).
 You should move this file to your KiCad Themes folder.
 
     **Windows**:
 
-    `C:\Users\<USER_NAME>\AppData\Roaming\kicad\8.0\colors`
+    `xcopy "KDT_Hierarchical_KiBot\kibot_resources\colors\Altium_Theme.json" "C:\Users\%USERNAME%\AppData\Roaming\kicad\8.0\colors\" /-Y`
 
     **Linux**:
 
-    `~/.config/kicad/8.0/colors`
+    `cp -i KDT_Hierarchical_KiBot/kibot_resources/colors/Altium_Theme.json ~/.config/kicad/8.0/colors/`
 
 > [!NOTE]
 > In the steps above, replace ```8.0``` with ```9.0``` for KiCad 9
