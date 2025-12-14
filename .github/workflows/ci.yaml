@@ -22,6 +22,8 @@ env:
 
   # Set the KiCad version to 9
   kicad_version: 9
+
+  kibot_log: kibot_run.log
  
 permissions:
   contents: write
@@ -128,13 +130,13 @@ jobs:
           # Determine additional_args based on the variant
           case "$kibot_variant" in
             "DRAFT")
-              additional_args="--skip-pre draw_fancy_stackup,erc,drc ${version_arg} draft_group"
+              additional_args="--skip-pre draw_fancy_stackup,erc,drc ${version_arg} --log ${{ env.kibot_log }} draft_group"
               ;;
             "PRELIMINARY")
-              additional_args="--skip-pre erc,drc ${version_arg} ${group_name}"
+              additional_args="--skip-pre erc,drc ${version_arg} --log ${{ env.kibot_log }} ${group_name}"
               ;;
             "CHECKED"|"RELEASED")
-              additional_args="${version_arg} ${group_name}"
+              additional_args="${version_arg} --log ${{ env.kibot_log }} ${group_name}"
               ;;
             *)
               echo "Unknown variant: $kibot_variant"
@@ -150,38 +152,38 @@ jobs:
         if: ${{ env.kicad_version == '8' && env.kibot_variant != 'DRAFT' }}
         uses: INTI-CMNB/KiBot@v2_dk8
         with:
-          targets: notes
           skip: all
           variant: ${{ env.kibot_variant }}
           config: ${{ env.kibot_config }}
+          additional_args: --log kibot_run_notes.log notes
 
       - name: Generate notes (KiCad 9)
         if: ${{ env.kicad_version == '9' && env.kibot_variant != 'DRAFT' }}
         uses: INTI-CMNB/KiBot@v2_dk9
         with:
-          targets: notes
           skip: all
           variant: ${{ env.kibot_variant }}
           config: ${{ env.kibot_config }}
+          additional_args: --log kibot_run_notes.log notes
 
       # Generate README only (only for DRAFT variant)
       - name: Generate README only (KiCad 8)
         if: ${{ env.kicad_version == '8' && env.kibot_variant == 'DRAFT' }}
         uses: INTI-CMNB/KiBot@v2_dk8
         with:
-          targets: md_readme
           skip: draw_fancy_stackup,set_text_variables,erc,drc
           variant: ${{ env.kibot_variant }}
           config: ${{ env.kibot_config }}
+          additional_args: --log kibot_run_readme.log md_readme
 
       - name: Generate README only (KiCad 9)
         if: ${{ env.kicad_version == '9' && env.kibot_variant == 'DRAFT' }}
         uses: INTI-CMNB/KiBot@v2_dk9
         with:
-          targets: md_readme
           skip: draw_fancy_stackup,set_text_variables,erc,drc
           variant: ${{ env.kibot_variant }}
           config: ${{ env.kibot_config }}
+          additional_args: --log kibot_run_readme.log md_readme
 
       # Generate outputs
       - name: Generate outputs (KiCad 8)
@@ -239,3 +241,24 @@ jobs:
         with:
           branch: ${{ github.ref_name }}
           commit_message: Update Outputs
+
+      - name: Store log
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: log_file
+          path: ${{ env.kibot_log }}
+
+      - name: Store notes log
+        if: ${{ always() && env.kibot_variant != 'DRAFT' }} 
+        uses: actions/upload-artifact@v4
+        with:
+          name: log_file_notes
+          path: kibot_run_notes.log
+
+      - name: Store README log
+        if: ${{ always() && env.kibot_variant == 'DRAFT' }} 
+        uses: actions/upload-artifact@v4
+        with:
+          name: log_file_readme
+          path: kibot_run_readme.log
