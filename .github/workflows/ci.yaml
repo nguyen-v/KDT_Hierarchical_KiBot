@@ -53,6 +53,7 @@ jobs:
         with:
           args: |
             Schematic/*.pdf
+            Purchasing/*
             Manufacturing/Assembly/*
             Manufacturing/Fabrication/*.pdf
             Manufacturing/Fabrication/*.zip
