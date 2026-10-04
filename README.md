@@ -78,6 +78,11 @@ An example project using this template can be found [here](https://github.com/ng
     cd ~/.local/share/kicad/8.0/template
     ```
 
+    **Mac**:
+    ```
+    cd ~/Library/Preferences/kicad/8.0/template
+    ```
+
 2. Clone the repository
 
     ```
@@ -93,7 +98,13 @@ An example project using this template can be found [here](https://github.com/ng
    fc-cache
    ```
 
-5. A custom color theme ([`Altium_Theme.json`](kibot_resources/colors/Altium_Theme.json)) is also provided in [`kibot_resources/colors`](kibot_resources/colors).
+   **Mac**:
+
+   ```
+   cp -i KDT_Hierarchical_KiBot/kibot_resources/fonts/*.ttf ~/Library/Fonts/
+   ```
+
+4. A custom color theme ([`Altium_Theme.json`](kibot_resources/colors/Altium_Theme.json)) is also provided in [`kibot_resources/colors`](kibot_resources/colors).
 You should move this file to your KiCad Themes folder.
 
     **Windows**:
@@ -103,6 +114,10 @@ You should move this file to your KiCad Themes folder.
     **Linux**:
 
     `cp -i KDT_Hierarchical_KiBot/kibot_resources/colors/Altium_Theme.json ~/.config/kicad/8.0/colors/`
+
+    **Mac**:
+
+    `cp -i KDT_Hierarchical_KiBot/kibot_resources/colors/Altium_Theme.json ~/Library/Preferences/kicad/8.0/colors/`
 
 > [!NOTE]
 > In the steps above, replace ```8.0``` with ```9.0``` for KiCad 9
@@ -279,6 +294,12 @@ The easiest way to install KiBot if custom development is not required is with d
   ./docker_kibot_linux.sh
   ```
 
+  Mac:
+
+  ```
+  ./docker_kibot_mac.sh
+  ```
+
 ***
 **KiCad 9**
 
@@ -292,6 +313,12 @@ The easiest way to install KiBot if custom development is not required is with d
 
   ```
   ./docker_kibot_linux.sh -v 9
+  ```
+
+  Mac:
+
+  ```
+  ./docker_kibot_mac.sh -v 9
   ```
   ***
 
