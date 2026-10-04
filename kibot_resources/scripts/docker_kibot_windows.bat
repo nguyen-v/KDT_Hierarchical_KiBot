@@ -10,6 +10,8 @@ REM Check for optional -v flag and version number
 if /I "%~1"=="-v" (
     if "%~2"=="9" (
         set "IMAGE=ghcr.io/inti-cmnb/kicad9_auto_full:dev"
+    ) else if "%~2"=="10" (
+        set "IMAGE=ghcr.io/inti-cmnb/kicad10_auto_full:dev"
     ) else (
         echo Unsupported version: %~2
         goto :eof
