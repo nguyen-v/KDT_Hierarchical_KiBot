@@ -12,6 +12,7 @@ outputs:
     dir: '@DIR@'
     output_id: @OUTPUT_ID@
     options:
+      collect_images: 'no'
       output: '%f-%I%v.txt'
       template: @TEMPLATE@
       exclude_filter: '_mechanical'
