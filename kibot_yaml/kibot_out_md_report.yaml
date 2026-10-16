@@ -11,6 +11,7 @@ outputs:
     category: '@CATEGORY@'
     dir: '@DIR@'
     options:
+      collect_images: 'no'
       output: '@OUTPUT_NAME@.md'
       template: @TEMPLATE@
 
