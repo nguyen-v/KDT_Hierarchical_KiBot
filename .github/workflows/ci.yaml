@@ -110,7 +110,7 @@ jobs:
       - name: Determine VERSION Argument and Override Variant if Tag
         id: determine-version-and-args
         run: |
-          last_tag=$(git describe --tags --abbrev=0 || echo "")
+          last_tag=$(git describe --tags --abbrev=0 --always 2>/dev/null || echo "")
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             version_arg="-E REVISION='${last_tag}'"
             echo "Overriding kibot_variant to 'RELEASED' for tag"
