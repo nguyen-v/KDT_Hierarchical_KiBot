@@ -35,7 +35,7 @@ jobs:
     if: github.ref_type == 'tag'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.ref }}
 
@@ -65,7 +65,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'Merge pull request') || github.ref_type == 'tag'"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -80,20 +80,20 @@ jobs:
 
       - name: Extract release notes
         if: ${{ github.ref_type == 'tag' }}
-        uses: ffurrer2/extract-release-notes@v2
+        uses: ffurrer2/extract-release-notes@v3
         id: extract-release-notes
         with:
           prerelease: true
 
       - name: Update changelog
         if: ${{ github.ref_type == 'tag' }}
-        uses: thomaseizinger/keep-a-changelog-new-release@v2
+        uses: thomaseizinger/keep-a-changelog-new-release@v3
         with:
           tag: ${{ github.ref_name }}
 
       - name: Commit updated CHANGELOG
         if: ${{ github.ref_type == 'tag' }}
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: main
           commit_message: Update CHANGELOG
@@ -102,7 +102,7 @@ jobs:
 
       - name: Cache 3D models data
         id: models-cache
-        uses: set-soft/cache@main
+        uses: actions/cache@v5
         with:
           path: ~/cache_3d
           key: cache_3d
@@ -237,28 +237,28 @@ jobs:
           git clean -f "*.kicad_prl"
 
       - name: Update Outputs
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: ${{ github.ref_name }}
           commit_message: Update Outputs
 
       - name: Store log
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: log_file
           path: ${{ env.kibot_log }}
 
       - name: Store notes log
         if: ${{ always() && env.kibot_variant != 'DRAFT' }} 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: log_file_notes
           path: kibot_run_notes.log
 
       - name: Store README log
         if: ${{ always() && env.kibot_variant == 'DRAFT' }} 
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: log_file_readme
           path: kibot_run_readme.log
