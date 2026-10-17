@@ -22,7 +22,7 @@ outputs:
     width: @WIDTH@
     view: '@VIEW@'
     ray_tracing: @RAYTRACING@
-    force_stackup_colors: true
+    force_stackup_colors: false
     orthographic: true
     transparent_background: true
     transparent_background_color: '@KEY_COLOR@'
