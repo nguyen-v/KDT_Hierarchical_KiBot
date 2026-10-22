@@ -1,5 +1,5 @@
 <p align="center" width="100%">
-  <img alt="Logo" width="33%" src="Logos/dummy_logo.svg">
+  <img alt="Logo" width="33%" src="Logos/dummy_logo.png">
 </p>
 
 <h1 align="center">${BOARD_NAME}</h1>
@@ -10,9 +10,7 @@
   </a>
 </p>
 
-<p align="center" width="100%">
-    <img src="Images/dummy_image.png">
-</p>
+<!-- Optional: add a project photograph here. -->
 
 ***
 
@@ -28,6 +26,9 @@
 
 | Parameter | Value | 
 | --- | --- |
+| Designer | ${DESIGNER} |
+| Reviewer | ${REVIEWER} |
+| Revision | ${REVISION} |
 | Dimensions | ${bb_w_mm} × ${bb_h_mm} mm |
 
 ***

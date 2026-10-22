@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "template_id": "nguyen-v.kdt-hierarchical-kibot",
+  "template_version": "1.0.0",
+  "files": {
+    ".github/workflows/ci.yaml": {
+      "policy": "workflow",
+      "sha256": "b9f8bf45f0a43f874d613429091b53195bddf00d1fbdef63d38b7f77ec7a595f"
+    },
+    "Logos/dummy_logo.png": {
+      "policy": "binary",
+      "sha256": "17c7de78a2a43ca44869e315c65cc42188d4d1b0beab7ebdd115f236afef825f"
+    },
+    "Templates/KDT_Template.kicad_wks": {
+      "policy": "text",
+      "sha256": "68671c5154d9f53eb3ebe7213df6b5937e412cb132d7ff83a875b13d70edbe42"
+    },
+    "Templates/KDT_Template_GIT.kicad_wks": {
+      "policy": "text",
+      "sha256": "52a91afc37f97679b5eceefec4f85e6a2b360519edf0d012ad7b24e1cfc183a1"
+    },
+    "Templates/KDT_Template_PCB_A3.kicad_wks": {
+      "policy": "text",
+      "sha256": "fa4819e0a71f0c319bb2de6b67e5106cf0cc616cec3f9144178ee0a0cf0bdac7"
+    },
+    "Templates/KDT_Template_PCB_A4.kicad_wks": {
+      "policy": "text",
+      "sha256": "7a0903e3cefa17281caac225c6265ae6c0faf3f19248aaa501c5ee7c16c4111c"
+    },
+    "Templates/KDT_Template_PCB_A5.kicad_wks": {
+      "policy": "text",
+      "sha256": "4a2fb96b9a215cbb44b1aa8e53f062198430478244fc2507ad9a613549c90d77"
+    },
+    "Templates/KDT_Template_PCB_GIT_A3.kicad_wks": {
+      "policy": "text",
+      "sha256": "6bb3d91041fafab7475a0971f12e9a33fd2dad537ab8dca8c6650ffb6effda79"
+    },
+    "Templates/KDT_Template_PCB_GIT_A4.kicad_wks": {
+      "policy": "text",
+      "sha256": "42c24c0e4cce157e0d21c329929182735fdd3286da276f9435abd7a1dd234137"
+    },
+    "Templates/KDT_Template_PCB_GIT_A5.kicad_wks": {
+      "policy": "text",
+      "sha256": "d5e0598576c84d25b4356cfa7cd093b41ff0ce8f410e43b4388680b38b7132fe"
+    },
+    "kibot_launch.sh": {
+      "policy": "text",
+      "sha256": "0cac35aa0e2fa0db704e56458773231e165212fa9be5883ea12fb79924195764"
+    },
+    "kibot_resources/colors/Altium_Theme.json": {
+      "policy": "text",
+      "sha256": "38ea9e8b3ea06e430cbc84cff5df957d43426beea79430f1d6e504237ed4ab79"
+    },
+    "kibot_resources/fonts/Arial.ttf": {
+      "policy": "binary",
+      "sha256": "35c0f3559d8db569e36c31095b8a60d441643d95f59139de40e23fada819b833"
+    },
+    "kibot_resources/fonts/Arial_Bold.ttf": {
+      "policy": "binary",
+      "sha256": "4044aa6b5bebbc36980206b45b0aaaaa5681552a48bcadb41746d5d1d71fd7b4"
+    },
+    "kibot_resources/fonts/Arial_Bold_Italic.ttf": {
+      "policy": "binary",
+      "sha256": "2f371cd9d96b3ac544519d85c16dc43ceacdfcea35090ee8ddf3ec5857c50328"
+    },
+    "kibot_resources/fonts/Arial_Italic.ttf": {
+      "policy": "binary",
+      "sha256": "70ade233175a6a6675e4501461af9326e6f78b1ffdf787ca0da5ab0fc8c9cfd6"
+    },
+    "kibot_resources/fonts/Times New Roman Bold Italic.ttf": {
+      "policy": "binary",
+      "sha256": "906157e8294fdf168d83002eaabde01c2d30fc3f44977be89e33fa22f262002a"
+    },
+    "kibot_resources/fonts/Times New Roman Bold.ttf": {
+      "policy": "binary",
+      "sha256": "73d356f225d60084bc787f4fd4e34a7f8b6627db470aaa8cabf255df395314d7"
+    },
+    "kibot_resources/fonts/Times New Roman Italic.ttf": {
+      "policy": "binary",
+      "sha256": "7bb99c3a67697fbce15ab66d806d9a2151432ce1dab2eaba4156e1251da486c0"
+    },
+    "kibot_resources/fonts/Times New Roman.ttf": {
+      "policy": "binary",
+      "sha256": "380142bc66332d09b0f24ddf4bcb74b359c93b686331d488a0f3154e2d7c26bb"
+    },
+    "kibot_resources/scripts/container/Dockerfile": {
+      "policy": "text",
+      "sha256": "bc4e4d15e3a9d3a9f0234ebc26c2cff0f82427236e8edc719430274e12ea2c47"
+    },
+    "kibot_resources/scripts/container/entrypoint.sh": {
+      "policy": "text",
+      "sha256": "ca420c6d7d33687f8bd37eb799001c8bddec80341ce12e6b63e33ca1682a0723"
+    },
+    "kibot_resources/scripts/container/patch_kibot.py": {
+      "policy": "text",
+      "sha256": "e306e55f5e172f7908a260315267699ae48d014d507f8a7bfa2a2e4bdb85a831"
+    },
+    "kibot_resources/scripts/container/prepare.py": {
+      "policy": "text",
+      "sha256": "bae5fad93775e1f1e180f77ec7ede6d27ace6191403f4f5364b123eccc444259"
+    },
+    "kibot_resources/scripts/container/requirements.txt": {
+      "policy": "text",
+      "sha256": "d86bb6496d59009d281ce7d8b1a03a609b58aebacef4db3c14f3471b7af007e1"
+    },
+    "kibot_resources/scripts/docker_kibot_linux.sh": {
+      "policy": "text",
+      "sha256": "a9837f2ffe1c09ea4e4c8a6d6f353a73acc1b91932dfb3dc218863e4cc5773cc"
+    },
+    "kibot_resources/scripts/docker_kibot_windows.bat": {
+      "policy": "text",
+      "sha256": "2355c41f0a7265e12347d8f619454a3d3250a0a69fc54474f55c3e8d2ab6568a"
+    },
+    "kibot_resources/scripts/get_changelog.py": {
+      "policy": "text",
+      "sha256": "afa638e9f8868101118e8ff8313d69d77596cca9339b44c15efb46495886f3e8"
+    },
+    "kibot_resources/scripts/get_changelog_version.py": {
+      "policy": "text",
+      "sha256": "35f2b694b52f61cbda92dab60251cf6c4ecf0d0e3fcddfe95113470caf5fda1d"
+    },
+    "kibot_resources/scripts/get_sheet_title.py": {
+      "policy": "text",
+      "sha256": "b04c0029351880f87cc59b9603dd15dfce2ece67422c6a4d289bd980cd303f19"
+    },
+    "kibot_resources/scripts/run_kibot.py": {
+      "policy": "text",
+      "sha256": "2efa9c2f7fec524fd6462c1bd9678616911483c0464836a8f40ecb5b84c1260f"
+    },
+    "kibot_resources/scripts/toolchains.json": {
+      "policy": "text",
+      "sha256": "7783d0504283250cf518beef62b412e03234c20fa91d51ca9f205948c908dda4"
+    },
+    "kibot_resources/templates/assembly_notes.txt": {
+      "policy": "document",
+      "sha256": "72387956d47aaaccd2a3708b1abb0903b3aa2101f8621802e282da22890e0861"
+    },
+    "kibot_resources/templates/fabrication_notes.txt": {
+      "policy": "document",
+      "sha256": "ab993b2e6e5b0ca139b02d493f63648a224fc835418ba4888ae85e8ee4c31097"
+    },
+    "kibot_resources/templates/impedance_table.txt": {
+      "policy": "document",
+      "sha256": "2413f84c5bed9425335b6c2f5f04b9ba01cd2718af2e717b2eb94616b83998f1"
+    },
+    "kibot_resources/templates/readme.txt": {
+      "policy": "document",
+      "sha256": "e4645ef90032c8873245d2c59044d3a0a1059b67da32dceed18b5a4e33534b2c"
+    },
+    "kibot_yaml/kibot_filt_exclude_testpoints.yaml": {
+      "policy": "text",
+      "sha256": "7ed28ef98210957dd0b68682899529473cc64f33577b47cf9f2f6bfd3152fcfd"
+    },
+    "kibot_yaml/kibot_filt_field_rename.yaml": {
+      "policy": "text",
+      "sha256": "236dda6086e80ab2326184fe389ec37de1f4ab343908cba1ce8387029bb5bf6a"
+    },
+    "kibot_yaml/kibot_filt_testpoints.yaml": {
+      "policy": "text",
+      "sha256": "0829c67bf6c1e054fa101dc17fa6949322c3393381ab6102cc7884dd901b1385"
+    },
+    "kibot_yaml/kibot_globals.yaml": {
+      "policy": "text",
+      "sha256": "4b78c2f13ba074db95415f4e5a0d58980ff9005ee8ef4f2b430d67673c94135a"
+    },
+    "kibot_yaml/kibot_main.yaml": {
+      "policy": "metadata",
+      "sha256": "109a376d621775c8323620938d23b6b4362e33fccb33f129de5cc33c3408fbd2"
+    },
+    "kibot_yaml/kibot_out_blender.yaml": {
+      "policy": "text",
+      "sha256": "1034995a511acdf6d6ba8e5b53eef40bd03376b4e0cc93b93833dfbdab3ed823"
+    },
+    "kibot_yaml/kibot_out_compress_fab.yaml": {
+      "policy": "text",
+      "sha256": "fd2cd6761310628d5201a288964aa8aff9a8b0c04e109b1048573424be710ee6"
+    },
+    "kibot_yaml/kibot_out_csv_bom.yaml": {
+      "policy": "text",
+      "sha256": "05763f2a35cfe8e2e0691ad9328d188e9fb754d276bae61823b89bc79f0a5770"
+    },
+    "kibot_yaml/kibot_out_csv_drill_table.yaml": {
+      "policy": "text",
+      "sha256": "e1443b535b8a8a7683786aa16a81a86ad02b7473d107674422e23633320d9104"
+    },
+    "kibot_yaml/kibot_out_csv_pos.yaml": {
+      "policy": "text",
+      "sha256": "5f367bfd19fb32a8d57f31b803500ef627310e0502753b8b14a720ff3397bb8a"
+    },
+    "kibot_yaml/kibot_out_csv_report.yaml": {
+      "policy": "text",
+      "sha256": "a88c1ae72d58abbbf082b0307294ce75a2f6f52f88a78acad50d5d4961e36b6c"
+    },
+    "kibot_yaml/kibot_out_csv_testpoints.yaml": {
+      "policy": "text",
+      "sha256": "463ca788600b69333fcf5c9be38fd77bce8d877c97bbffc7df59cefb15c7b893"
+    },
+    "kibot_yaml/kibot_out_csv_testpoints_simple.yaml": {
+      "policy": "text",
+      "sha256": "19d958f0ec1e206e00a8605c381a32a4bc7bb28995c4e76148fe0a46cc66fce1"
+    },
+    "kibot_yaml/kibot_out_excellon_drill.yaml": {
+      "policy": "text",
+      "sha256": "06fc635ce405ca1b79b696f5cf3ae11c976b4d7b637903fa79317a9cfc3383d8"
+    },
+    "kibot_yaml/kibot_out_gerber.yaml": {
+      "policy": "text",
+      "sha256": "d1dba3bfac2786d30e6728b9ca490aa5712a1840dd541915d4c08e40c55e9964"
+    },
+    "kibot_yaml/kibot_out_html_bom.yaml": {
+      "policy": "text",
+      "sha256": "57ba82b7550e9ddc1a19e912e65bdf20ad25765c013aaa55d6907a909456a289"
+    },
+    "kibot_yaml/kibot_out_html_ibom.yaml": {
+      "policy": "text",
+      "sha256": "27c036d98b59b4ee849d9d1bb30a2b521020553fee6d62fd3731ec584ae274f6"
+    },
+    "kibot_yaml/kibot_out_html_kicanvas.yaml": {
+      "policy": "text",
+      "sha256": "d31341de9eb2da84316472cef9030446fdab486f4f37cc2233b64aa01187f867"
+    },
+    "kibot_yaml/kibot_out_html_kiri.yaml": {
+      "policy": "text",
+      "sha256": "a28e9d808665c67f2810aa27c351665467bb26866015d238f557bb677955ee12"
+    },
+    "kibot_yaml/kibot_out_md_report.yaml": {
+      "policy": "text",
+      "sha256": "f8719bcf8f744b149990b1292372aa7aa3b2ee4f806e93300cd1b507ebf786a9"
+    },
+    "kibot_yaml/kibot_out_navigate_results.yaml": {
+      "policy": "text",
+      "sha256": "06163a5531600bc3bbfc3247a36643930617f3c17f9ba3349902158e447be4df"
+    },
+    "kibot_yaml/kibot_out_netlist.yaml": {
+      "policy": "text",
+      "sha256": "441a82190c7dd0388b0e54e5e484d1d387820f28072594d76a2fe5c51297e60b"
+    },
+    "kibot_yaml/kibot_out_odb.yaml": {
+      "policy": "text",
+      "sha256": "10c9e0b4cf9e76b61d09102f0b1eb1860fd580a50b4ce940b95847fcd5d96d48"
+    },
+    "kibot_yaml/kibot_out_pdf_assembly.yaml": {
+      "policy": "text",
+      "sha256": "00c0caae16f5a9e2f00fff5aa6fd2e2e12c2fb25596856efd6b6151e35736d0c"
+    },
+    "kibot_yaml/kibot_out_pdf_fabrication.yaml": {
+      "policy": "text",
+      "sha256": "a285464950a0d5485c37ec8d4e5c07e01f5c35b6515c2f11a92543fe47ae48c5"
+    },
+    "kibot_yaml/kibot_out_pdf_schematic.yaml": {
+      "policy": "text",
+      "sha256": "d5966b07b040c4bc46502267fbbcb7eee8aada26df5fc74160be3bd9a8cd0ecb"
+    },
+    "kibot_yaml/kibot_out_png_3d_viewer.yaml": {
+      "policy": "text",
+      "sha256": "23aa6ff8d04c9446789baa93d452dbad453b6d57964a20c0ad66d56fbdd8b416"
+    },
+    "kibot_yaml/kibot_out_sch_variant.yaml": {
+      "policy": "text",
+      "sha256": "62fcfadd1c36600c1a811eb3cb6556bc4aee174e254698b092aea123e3fdef24"
+    },
+    "kibot_yaml/kibot_out_step.yaml": {
+      "policy": "text",
+      "sha256": "59c1ca022b12397b92cae4a588be5bb74860ede3d640dbd54d64363d3dff217f"
+    },
+    "kibot_yaml/kibot_out_txt_report.yaml": {
+      "policy": "text",
+      "sha256": "22f6a7c72ee5d672ef6191dd2ae7160acdb551f6cdfb606056ef5f0a7dbb5095"
+    },
+    "kibot_yaml/kibot_out_xlsx_bom.yaml": {
+      "policy": "text",
+      "sha256": "ae276df04f6d0a7fe380c08efd9f6e79543210b798bf7644d6db0d2989088e19"
+    },
+    "kibot_yaml/kibot_pre_draw_stackup.yaml": {
+      "policy": "text",
+      "sha256": "18e4579b9cc6258d25edd9ffb80c03141be5ec25251f879a937758850815234d"
+    },
+    "kibot_yaml/kibot_pre_drc_report.yaml": {
+      "policy": "text",
+      "sha256": "99609a00dc335902be5feb46becadbccaf119d4f96d7dc3dc980044514631f24"
+    },
+    "kibot_yaml/kibot_pre_erc_report.yaml": {
+      "policy": "text",
+      "sha256": "1675d0eac8a129ab319fd02f421f1f23046c57a4eeb02e13a50cbf0afaa87938"
+    },
+    "kibot_yaml/kibot_pre_include_table.yaml": {
+      "policy": "text",
+      "sha256": "fe22cd948a615d4d10b5669986e93a2b596637fc64c00bad949ceeb7772c2c97"
+    },
+    "kibot_yaml/kibot_pre_set_text_variables.yaml": {
+      "policy": "release_variables",
+      "sha256": "c0513737fa62c917ac28f6ed344fabd6caea5b0acaa56630ea49caf14c8e385f"
+    },
+    "kibot_yaml/kicost_config_local_template.yaml": {
+      "policy": "text",
+      "sha256": "fe61dd4c931ad5d75cb53692e27da53ed7762fd02969375a46d6ab4fae97cb03"
+    }
+  }
+}

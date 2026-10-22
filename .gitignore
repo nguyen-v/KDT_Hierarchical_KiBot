@@ -14,3 +14,8 @@ kibot_*.kicad_pcb
 kibot_*.kicad_dru
 kibot_*.kicad_prl
 kibot_*.kicad_pro
+
+# Local KiBot logs and Python bytecode
+kibot_run*.log
+__pycache__/
+*.py[cod]

@@ -7,9 +7,6 @@ NC='\033[0m' # No Color
 
 # Default options
 variant="CHECKED"
-output_dir="."
-kibot_base="kibot"
-kibot_config="-c 'kibot_yaml/kibot_main.yaml'"
 revision=""
 costs_flag=false
 server_flag=false
@@ -121,67 +118,13 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-# Get version if not specified
-if [[ -z "$revision" ]]; then
-    revision=$(python3 kibot_resources/scripts/get_changelog_version.py -f CHANGELOG.md)
-    if [[ $? -ne 0 ]]; then
-        echo -e "${YELLOW}Warning: Unable to determine version from CHANGELOG.md. Defaulting to empty revision.${NC}"
-        revision=""
-    fi
-fi
-
-# Check KiCad version and set group command accordingly
-kicad_version=$(kicad-cli --version)
-if [[ "$kicad_version" =~ ^9\.[0-9]+\.[0-9]+$ ]]; then
-    all_group="all_group_k9"
-else
-    all_group="all_group"
-fi
-
-# Handle server flag
+# Server controls above remain available; generation uses the shared argument-safe runner.
 if [[ "$server_flag" == true ]]; then
-    echo -e "${GREEN}Starting HTTP server on port $server_port...${NC}"
     python3 -m http.server "$server_port" &
-    echo $! > $pid_file
-    sleep 1
-    echo -e "${GREEN}Server running. Navigate to: http://localhost:$server_port${NC}"
+    echo $! > "$pid_file"
     exit 0
 fi
-
-# Determine output directory based on variant
-case "$variant" in
-    DRAFT|PRELIMINARY|CHECKED|RELEASED)
-        output_dir="."
-        ;;
-    *)
-        output_dir="Variants"
-        ;;
-esac
-
-# Determine command based on variant
-if [[ "$costs_flag" == true ]]; then
-    kibot_command1="$kibot_base --skip-pre erc,drc,draw_fancy_stackup $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' -E KICOST_CONFIG='kibot_yaml/kicost_config_local.yaml' xlsx_bom"
-else
-    case "$variant" in
-        DRAFT)
-            kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' md_readme"
-            kibot_command2="$kibot_base --skip-pre draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' draft_group"
-            ;;
-        PRELIMINARY)
-            kibot_command1="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
-            kibot_command2="$kibot_base --skip-pre erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' $all_group"
-            ;;
-        CHECKED|RELEASED|*)
-            kibot_command1="$kibot_base --skip-pre set_text_variables,draw_fancy_stackup,erc,drc $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' notes"
-            kibot_command2="$kibot_base $kibot_config -d '$output_dir' -g variant=$variant -E REVISION='$revision' $all_group"
-            ;;
-    esac
-fi
-
-# Execute the commands
-echo -e "${GREEN}Running: $kibot_command1${NC}"
-eval $kibot_command1
-if [[ "$costs_flag" == false ]]; then
-    echo -e "${GREEN}Running: $kibot_command2${NC}"
-    eval $kibot_command2
-fi
+runner_args=(--variant "$variant")
+[[ -z "$revision" ]] || runner_args+=(--version "$revision")
+[[ "$costs_flag" == false ]] || runner_args+=(--costs)
+exec python3 "$(dirname -- "${BASH_SOURCE[0]}")/kibot_resources/scripts/run_kibot.py" "${runner_args[@]}"
