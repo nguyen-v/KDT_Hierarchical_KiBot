@@ -1,4 +1,4 @@
-<h1 align="center">KiCad 8/9 Template for CI/CD with KiBot</h1>
+<h1 align="center">KiCad 9/10 Template for CI/CD with KiBot</h1>
 
 <p align="center">
   <a href=https://www.kicad.org/>
@@ -10,7 +10,7 @@
   </a>
 </p>
 
-A **KiCad 8/9** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master).
+A **KiCad 9/10** template for **automated**, professional documentation generation with **Continuous Integration and Continuous Development** (CI/CD) using [KiBot](https://github.com/INTI-CMNB/KiBot/tree/master).
 
 A video tutorial for setting up this template is available [here](https://www.youtube.com/watch?v=63R6Wnx44uY).
 
@@ -70,12 +70,12 @@ An example project using this template can be found [here](https://github.com/ng
     **Windows**:
 
     ```
-    cd "C:\Program Files\KiCad\8.0\share\kicad\template"
+    cd "C:\Program Files\KiCad\9.0\share\kicad\template"
     ```
 
     **Linux**:
     ```
-    cd ~/.local/share/kicad/8.0/template
+    cd ~/.local/share/kicad/9.0/template
     ```
 
 2. Clone the repository
@@ -89,7 +89,8 @@ An example project using this template can be found [here](https://github.com/ng
    **Linux**:
 
    ```
-   cp -i KDT_Hierarchical_KiBot/kibot_resources/fonts/*.ttf ~/.fonts/
+   mkdir -p ~/.local/share/fonts
+   cp -i KDT_Hierarchical_KiBot/kibot_resources/fonts/*.ttf ~/.local/share/fonts/
    fc-cache
    ```
 
@@ -98,14 +99,14 @@ You should move this file to your KiCad Themes folder.
 
     **Windows**:
 
-    `xcopy "KDT_Hierarchical_KiBot\kibot_resources\colors\Altium_Theme.json" "C:\Users\%USERNAME%\AppData\Roaming\kicad\8.0\colors\" /-Y`
+    `xcopy "KDT_Hierarchical_KiBot\kibot_resources\colors\Altium_Theme.json" "C:\Users\%USERNAME%\AppData\Roaming\kicad\9.0\colors\" /-Y`
 
     **Linux**:
 
-    `cp -i KDT_Hierarchical_KiBot/kibot_resources/colors/Altium_Theme.json ~/.config/kicad/8.0/colors/`
+    `cp -i KDT_Hierarchical_KiBot/kibot_resources/colors/Altium_Theme.json ~/.config/kicad/9.0/colors/`
 
 > [!NOTE]
-> In the steps above, replace ```8.0``` with ```9.0``` for KiCad 9
+> In the steps above, replace `9.0` with `10.0` for KiCad 10. On macOS, use `~/Documents/KiCad/9.0/template` (or `10.0`)
 
 5. Create a new project with:
 
@@ -120,7 +121,7 @@ You should move this file to your KiCad Themes folder.
    git checkout -b dev
    ```
    
-7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L556) according to your project:
+7. Modify the following fields in [`kibot_main.yaml`](kibot_yaml/kibot_main.yaml) according to your project:
     ```
       # Metadata ===================================================================
 
@@ -129,6 +130,7 @@ You should move this file to your KiCad Themes folder.
 
       COMPANY: Company Name
       DESIGNER: Author
+      REVIEWER: ''
 
       LOGO: 'Logos/dummy_logo.png'
       GIT_URL: 'https://github.com/nguyen-v/KDT_Hierarchical_KiBot'
@@ -201,12 +203,12 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
     # DRAFT: only schematic in progress, will only generate schematic PDF, netlist and BoM
     # PRELIMINARY: will generate both schematic and PCB documents, but no ERC/DRC
     # CHECKED: will generate both schematic and PCB documents, with ERC/DRC
-    # RELEASED: similar to CHECKED, automatically selected when pushing a tag to master
+    # RELEASED: similar to CHECKED, automatically selected when pushing a tag on main
 
     kibot_variant: CHECKED  
   ```
 
-- The `kicad_version` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L24) should be selected according to the desired KiCad version. Supported versions are 8 and 9.
+- The `kicad_version` variable in [.github/workflows/ci.yaml](.github/workflows/ci.yaml#L24) should be selected according to the desired KiCad version. Supported versions are **9 and 10**, with **9 retained as the default**. Select the version that matches your project files; upgrading the template does not convert a KiCad 10 design back to KiCad 9.
 
 - You should work locally on the `dev` branch. When a change is made, the changes should be pushed to GitHub which will trigger the KiBot workflow. The generated files will be committed and pushed back to the repository.
 
@@ -229,10 +231,12 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
   ```
   git checkout main
-  git pull
+  git pull --ff-only
   git tag x.x.x
   git push origin x.x.x
   ```
+
+  The tag must point at the current `main` tip. CI generates from that exact tag and refuses to overwrite concurrent branch changes.
 
   This will start a KiBot run with the variant set as `RELEASED`. When the run completes, it also creates a release with assets and updates the `CHANGELOG.md` file (renames the `[Unreleased]` section with the pushed tag and creates a new `[Unreleased]` section).
 
@@ -256,58 +260,27 @@ This template is meant to be used in a CI/CD environment on GitHub. The workflow
 
 ### Running Locally
 
-KiBot can be installed if you want to run some of the scripts locally. If you only plan to use it in a CI/CD workflow, this step can be skipped.
-Installation steps can be found on the [official documentation](https://kibot.readthedocs.io/en/master/installation.html). 
-The easiest way to install KiBot if custom development is not required is with dockers.
+Install Python 3.9+ and [Docker](https://docs.docker.com/get-started/get-docker/), then run from the **project root**:
 
-1.  Install **and run** [Docker Desktop](https://docs.docker.com/desktop/)
-  
-2.  Run the script `docker_kibot_windows.bat` or `docker_kibot_linux.sh` depending on your platform in [`kibot_resources/scripts`](kibot_resources/scripts). Currently tested on Windows and WSL2. This should pull and start a docker running the `dev` branch of KiBot. You should have access to your local files.
-
-***
-**KiCad 8**
-
-  Windows:
-
-  ```
-  .\docker_kibot_windows.bat
-  ```
-
-  Linux:
-
-  ```
-  ./docker_kibot_linux.sh
-  ```
-
-***
-**KiCad 9**
-
-  Windows:
-
-  ```
-  .\docker_kibot_windows.bat -v 9
-  ```
-
-  Linux:
-
-  ```
-  ./docker_kibot_linux.sh -v 9
-  ```
-  ***
-
-Once in the docker, you can use the [`kibot_launch.sh`](kibot_launch.sh) script to generate and visualize outputs.
-
-```
-./kibot_launch.sh
+```sh
+python3 kibot_resources/scripts/run_kibot.py --container --major 9 --variant CHECKED --network bridge
+# For a KiCad 10 project, change --major 9 to --major 10.
 ```
 
-You can get more information about the usage with
+On Windows use `py -3` instead of `python3`. The Linux/macOS and Windows wrapper scripts in
+`kibot_resources/scripts/` accept `-v 9` or `-v 10`, followed by runner options; they default to KiCad 9.
+They now run the workflow directly, rather than opening an interactive shell or mounting your whole home folder.
 
-```
-./kibot_launch.sh --help
-```
+The first run downloads the pinned toolchain. KiCad 10 builds a local image with a matched Python runtime and guarded rendering fixes; later runs reuse it.
+Both toolchains run as Linux x86-64 containers (Docker Desktop uses emulation on Apple Silicon).
+Toolchain versions and immutable image/download hashes live in [`toolchains.json`](kibot_resources/scripts/toolchains.json).
+Network access is opt-in locally: `--network bridge` allows outputs such as KiRI to fetch Git history and external assets.
+Private repositories need Git credentials inside the container for KiRI; your host SSH keys are not mounted automatically.
 
-When running the script with no arguments, it will default to the `CHECKED` variant and generate all outputs. A variant can be set with the `-v` flag. If a custom variant is used (i.e. other than the default variants `DRAFT`, `PRELIMINARY`, `CHECKED`, `RELEASED`), the outputs will be generated in the `Variants` folder.
+For a native KiBot installation, `./kibot_launch.sh -v CHECKED` detects the installed KiCad major and uses the same output phases.
+See `./kibot_launch.sh --help` and `python3 kibot_resources/scripts/run_kibot.py --help` for options.
+The native route requires a compatible KiBot installation; the pinned container is the reproducible path used in CI.
+The launcher keeps its `CHECKED` default; the Python runner defaults to `DRAFT` unless you specify `--variant`.
 
 Each default variant will have different KiBot flags, which is useful for different phases of the project:
 
@@ -352,7 +325,7 @@ You can also specify a variant if desired:
 For more information, please have a look at the official [documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html)
 
 > [!CAUTION]
-> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml#L576) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
+> KiCost expects the **MPN (Manufacturer Part Number)** and **Manufacturer** fields to be named in a certain way. To cater for different naming conventions, we rename user-defined fields to KiCost-compatible fields in the KiBot run. You can set your user-defined field for **MPN** and **Manufacturer** in the [`kibot_yaml/kibot_main.yaml`](kibot_yaml/kibot_main.yaml) by editing the `MPN_FIELD` and `MAN_FIELD` definitions.
 
 <p align="center">
   <img alt="XLSX BoM" src="https://github.com/user-attachments/assets/e7683ae3-efcc-4f64-b4b7-c4c39c3c9d48">
@@ -691,3 +664,16 @@ The following directory structure is used in the template. Folders marked as 'op
 ## CONTRIBUTING
 
 Feel free to open a pull request if you have any cool features to add!
+
+## TEMPLATE UPDATES AND MAINTENANCE
+
+The template has a separate version in [`meta/info.html`](meta/info.html) and
+[`kibot_resources/project_manager/template.json`](kibot_resources/project_manager/template.json).
+It is independent of your board's version tags and `CHANGELOG.md`.
+The optional KiCad Project Manager plugin can use this manifest to find missing/new template files and preview updates while preserving project settings.
+No plugin or company library is required. Keep your project's KiCad major, metadata, notes and component-field mapping when updating.
+
+For maintainers, see [`meta/template-changelog.md`](meta/template-changelog.md) and [`meta/tests/README.md`](meta/tests/README.md).
+Maintenance tests stay under `meta/`, which KiCad excludes from new projects. Only `ci.yaml` is active by default.
+After editing managed files, regenerate `template.json` using Project Manager's `build_manifest()` helper with the public ID `nguyen-v.kdt-hierarchical-kibot` and the new template version.
+Review every changed file before publishing an update.

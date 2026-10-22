@@ -1,0 +1,14 @@
+{
+  "9": {
+    "image": "ghcr.io/inti-cmnb/kicad9_auto_full@sha256:4aabcd7d09ba3b605b9e9813b0ee41a8dbaa4fda777929e235a718f7d47f6113",
+    "kicad": "9.0.7",
+    "kibot": "1.9.2",
+    "qualification": "Pinned KiCad 9 production image; select 10 separately for KiCad 10 projects."
+  },
+  "10": {
+    "base_image": "ghcr.io/inti-cmnb/kicad10_auto_full@sha256:7b720dc99b2775e4f4133f06887cf9a53c85a8403438d6684ecf0916d124f52a",
+    "kicad": "10.0.7",
+    "sha256": "c283e6efab9b0eff96c9a994b80a330e86cd6f3518a9647c9140afa95de6e72f",
+    "kibot": "1.9.2"
+  }
+}

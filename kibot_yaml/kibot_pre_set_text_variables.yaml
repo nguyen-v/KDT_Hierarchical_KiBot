@@ -32,6 +32,8 @@ preflight:
       text: '@COMPANY@'
     - variable: 'DESIGNER'
       text: '@DESIGNER@'
+    - variable: 'REVIEWER'
+      text: '@REVIEWER@'
     - variable: 'VARIANT'
       text: '%V'
 
@@ -165,6 +167,7 @@ definitions:
   BOARD_NAME: ""
   COMPANY: ""
   DESIGNER: ""
+  REVIEWER: ""
   REVISION: ""
   RELEASE_DATE: ""
   RELEASE_DATE_NUM: ""

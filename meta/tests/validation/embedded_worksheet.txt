@@ -1,0 +1,7 @@
+
+	(embedded_files
+		(file (name "port-cache.kicad_wks") (type worksheet)
+			(data |KLUv/WAWAHUFAOLLIx1wJ84BQIsqi2phfYttGL6u/7gOia6YvIfZSv+riAAIofOyNJxpIssk5ZbOmWCJrV2Tq68gBuL9lbZoPl5f60dDQHgP32PPqMndPJxcJUE9o6TMMFGjKdZwRhGSlV34nCFzRgIE5R9g28P37BTs2xlpLq4XjGPNNfTsyRkNKKUCCqlgltj0Bue2PMUyEFwuCgBIu9I0YU4XoE2jzDzGmjLjHDiKAZq7yKszAw==|)
+			(checksum "cf7559d12e653c98513ccb11de0c3da62347318d9b6e9c4ea3e7615f30f1c1f4")
+		)
+	)
