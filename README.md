@@ -177,7 +177,7 @@ You should move this file to your KiCad Themes folder.
 
 8. The files inside of [`kibot_resources/templates`](kibot_resources/templates) should also be modified according to your project. These include Assembly and Fabrication notes, Impedance table and README file templates.
 
-9. Edit the [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) if necessary according to your design rules. Right now, it has been set for PCBWay 6-layer PCBs with 2oz outer 1oz inner, focusing on lowest cost.
+9. Set the board constraints for your manufacturer's capabilities in **Board Setup → Design Rules**. The [`*.kicad_dru`](KDT_Hierarchical_KiBot.kicad_dru) file contains no custom rules by default; add project-specific rules there when needed.
 
 10.  Edit the [`kibot_out_csv_bom.yaml`](kibot_yaml/kibot_out_csv_bom.yaml), [`kibot_out_html_bom.yaml`](kibot_yaml/kibot_out_html_bom.yaml) and [`kibot_out_xlsx_bom.yaml`](kibot_yaml/kibot_out_xlsx_bom.yaml) files according to the component fields that you use. You can refer to the [KiCost Documentation](https://hildogjr.github.io/KiCost/docs/_build/singlehtml/index.html) for the field names.
 
@@ -664,16 +664,3 @@ The following directory structure is used in the template. Folders marked as 'op
 ## CONTRIBUTING
 
 Feel free to open a pull request if you have any cool features to add!
-
-## TEMPLATE UPDATES AND MAINTENANCE
-
-The template has a separate version in [`meta/info.html`](meta/info.html) and
-[`kibot_resources/project_manager/template.json`](kibot_resources/project_manager/template.json).
-It is independent of your board's version tags and `CHANGELOG.md`.
-The optional KiCad Project Manager plugin can use this manifest to find missing/new template files and preview updates while preserving project settings.
-No plugin or company library is required. Keep your project's KiCad major, metadata, notes and component-field mapping when updating.
-
-For maintainers, see [`meta/template-changelog.md`](meta/template-changelog.md) and [`meta/tests/README.md`](meta/tests/README.md).
-Maintenance tests stay under `meta/`, which KiCad excludes from new projects. Only `ci.yaml` is active by default.
-After editing managed files, regenerate `template.json` using Project Manager's `build_manifest()` helper with the public ID `nguyen-v.kdt-hierarchical-kibot` and the new template version.
-Review every changed file before publishing an update.

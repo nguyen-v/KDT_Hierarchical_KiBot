@@ -99,7 +99,11 @@ jobs:
             echo "PORT_REVISION=$GITHUB_REF_NAME" >> "$GITHUB_ENV"
           else
             last_tag=$(git describe --tags --abbrev=0 2>/dev/null || true)
-            echo "PORT_REVISION=${last_tag}*" >> "$GITHUB_ENV"
+            if [[ -n "$last_tag" ]]; then
+              echo "PORT_REVISION=${last_tag}+ (Unreleased)" >> "$GITHUB_ENV"
+            else
+              echo "PORT_REVISION=(Unreleased)" >> "$GITHUB_ENV"
+            fi
           fi
 
       - name: Generate notes, outputs and README with pinned KiBot

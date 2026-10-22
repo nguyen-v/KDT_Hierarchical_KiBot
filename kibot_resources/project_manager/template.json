@@ -5,7 +5,7 @@
   "files": {
     ".github/workflows/ci.yaml": {
       "policy": "workflow",
-      "sha256": "b3e059bbb012307f2e84fcb91a1ee333a0ca61625ee1cc2d9ab16fe8cf608f80"
+      "sha256": "b9f8bf45f0a43f874d613429091b53195bddf00d1fbdef63d38b7f77ec7a595f"
     },
     "Logos/dummy_logo.png": {
       "policy": "binary",
@@ -117,7 +117,7 @@
     },
     "kibot_resources/scripts/get_changelog_version.py": {
       "policy": "text",
-      "sha256": "42454cf9620308d005f1cb3760c57938e178b8ffc1f69514be70da8ba78d7ebe"
+      "sha256": "35f2b694b52f61cbda92dab60251cf6c4ecf0d0e3fcddfe95113470caf5fda1d"
     },
     "kibot_resources/scripts/get_sheet_title.py": {
       "policy": "text",

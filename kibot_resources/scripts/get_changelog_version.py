@@ -20,9 +20,9 @@ def get_last_version(file_path):
         if last_version.lower() == "unreleased":
             if len(versions) > 1:
                 second_last_version = versions[1]
-                return f"{second_last_version}*"
+                return f"{second_last_version}+ (Unreleased)"
             else:
-                return "*"
+                return "(Unreleased)"
         else:
             return last_version
 
